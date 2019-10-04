@@ -1,0 +1,4 @@
+<% @cards.find_each do |card| %>
+  <%= t('name') %> <%= card.original_text %> <br>
+  <%= t('description') %><%= card.translated_text %> <br>
+<% end %>

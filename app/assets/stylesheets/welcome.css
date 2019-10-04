@@ -1,0 +1,25 @@
+.header-title {
+  text-align: center;
+  margin: 50px 0px; }
+
+.header-subtitle {
+  font-size: 20px;
+  margin-top: 50px;
+  text-align: center; }
+
+.navbar {
+  margin-top: 100px; }
+
+.navbar-link {
+  margin-right: 50px;
+  border: 2px;
+  text-align: center; }
+
+.navbar-link a {
+  font-size: 20px; }
+
+.navbar-link a:hover {
+  text-decoration: none;
+  color: #383838; }
+
+/*# sourceMappingURL=welcome.css.map */
