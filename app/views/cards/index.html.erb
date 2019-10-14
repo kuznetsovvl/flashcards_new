@@ -1,4 +1,7 @@
 <% @cards.find_each do |card| %>
   <%= t('name') %> <%= card.original_text %> <br>
   <%= t('description') %><%= card.translated_text %> <br>
+  <%= link_to 'Show', card_path(card) %> <br>
+  <%= link_to 'Edit', edit_card_path(card) %> <br>
+  <%= button_to 'Destroy', card_path(card), method: :delete %> <br>
 <% end %>
