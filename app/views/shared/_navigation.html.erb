@@ -1,0 +1,16 @@
+<section class="container">
+	<div class="header">
+    <h1 class ="header-title"><%= t('header') %></h1>
+     <nav class="navbar">
+      <span class="navbar-link">
+       <p class="navbar-link-text"><i class="fas fa-border-all"></i></p>
+        <%= link_to t('all_card_link'), cards_path %>
+      </span>
+      <span class="navbar-link">
+       <p class="navbar-link-text"><i class="fas fa-plus"></i></p>
+        <%= link_to t('add_card_link') %>
+      </span>
+	  </nav>
+     <p class="header-subtitle""><%= t('header_subtitle') %></p>
+  </div>
+</section>
