@@ -10,5 +10,3 @@ page.css('.entry-content tr').take(5).each do |a|
 	translated_text: a.css('td:last-child').text  
   )
 end
-
-
