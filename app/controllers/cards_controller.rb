@@ -1,6 +1,5 @@
 class CardsController < ApplicationController
   def index
-
     @cards = Card.all		
      Rails.logger.debug "#{@cards.to_a.inspect}"
   end
