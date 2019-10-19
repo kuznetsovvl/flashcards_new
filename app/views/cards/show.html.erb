@@ -1,0 +1,4 @@
+  <%= t('name') %> <%= @card.original_text %> <br>
+  <%= t('description') %><%= @card.translated_text %> <br>
+  <%= link_to 'Edit', edit_card_path(@card) %> <br>
+  <%= link_to 'Back', cards_path %>

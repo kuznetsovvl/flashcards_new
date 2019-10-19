@@ -1,0 +1,26 @@
+<%= form_with model: @card, local: true do |form| %>
+  <% if @card.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@card.errors.count, "error") %> prohibited
+        this article from being saved:
+      </h2>
+      <ul>
+        <% @card.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <p>
+    <%= form.label :original_text %><br>
+    <%= form.text_field :original_text %>
+  </p> 
+  <p>
+    <%= form.label :translated_text %><br>
+    <%= form.text_field :translated_text %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
