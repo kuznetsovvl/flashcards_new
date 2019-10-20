@@ -1,3 +1,3 @@
 require './lib/seeds/some_class'
 a = Scraper.new
-a.scraper_cards
+a.create_cards
