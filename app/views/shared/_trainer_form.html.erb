@@ -1,0 +1,9 @@
+  <%= simple_form_for today_card, method: :put do |f| %>
+    <%= f.label :do_you_remember? %> <br>
+    <%= f.label today_card.original_text %> <br>
+    <%= f.hidden_field 'translated_text' %>
+    <%= simple_fields_for :other do |o| %>
+      <%= o.input :user_answer, label: false%>
+    <% end %>
+    <%= f.button :submit, 'Check' %>
+  <% end %>
