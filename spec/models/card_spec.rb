@@ -13,7 +13,7 @@ RSpec.describe Card, type: :model do
   end
 
   it 'validate with valid original_text and translated_text' do
-    expect(Card.new(original_text: 'anything', translated_text: 'anything_text')).to be_valid
+    expect(described_class.new(original_text: 'anything', translated_text: 'anything_text')).to be_valid
   end
 
 end

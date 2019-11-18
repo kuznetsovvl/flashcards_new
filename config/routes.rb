@@ -2,7 +2,6 @@
 
 Rails.application.routes.draw do
   get 'welcome/index'
-  put 'cards/:id', to: 'cards#trainer'
   root 'welcome#index'
   resources :cards do
   	put 'trainer', on: :member

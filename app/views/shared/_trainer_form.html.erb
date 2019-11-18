@@ -1,4 +1,4 @@
-  <%= simple_form_for today_card, method: :put do |f| %>
+  <%= simple_form_for today_card, url: trainer_card_path(today_card), method: :put do |f| %>
     <%= f.label :do_you_remember? %> <br>
     <%= f.label today_card.original_text %> <br>
     <%= f.hidden_field 'translated_text' %>
