@@ -1,11 +1,10 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe CardsController, type: :controller do
-
-  describe "GET #index" do
-    it "returns http success" do
-      #get :index
-      expect(response).to have_http_status(:success)
-    end
+describe 'Routing', type: :routing do
+  it do
+    should route(:get, '/cards', port: 3000).
+      to('cards#index')
   end
 end
