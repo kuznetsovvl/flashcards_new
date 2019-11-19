@@ -1,5 +1,6 @@
-class CardsController < ApplicationController
+# frozen_string_literal: true
 
+class CardsController < ApplicationController
   def index
     @cards = Card.all
   end
@@ -20,6 +21,7 @@ class CardsController < ApplicationController
     @card = Card.new(card_params)
 
     if @card.save
+      flash[:success] = 'The card have created successfully'
       redirect_to @card
     else
       render 'new'
@@ -41,7 +43,20 @@ class CardsController < ApplicationController
 
     redirect_to cards_path
   end
-private
+
+  def trainer
+    @card = Card.find(params[:id])
+
+    if @card[:translated_text] == params[:other][:user_answer]
+      @card.touch
+      flash.now[:success] = 'Awesome!'
+    else
+      flash.now[:error] = 'Try again!'
+    end
+  end
+
+  private
+
   def card_params
     params.require(:card).permit(:original_text, :translated_text)
   end

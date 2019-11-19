@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'nokogiri'
 require 'open-uri'
 
@@ -16,7 +18,9 @@ class Scraper
       )
     end
   end
-private
+
+  private
+
   def page
     page = Nokogiri::HTML(open(SOURCE))
   end
