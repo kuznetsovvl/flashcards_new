@@ -95,38 +95,3 @@ RSpec.configure do |config|
   #   # as the one that triggered the failure.
   #   Kernel.srand config.seed
 end
-
-module ActionController
-  module Flash
-    class FlashHash 
-      def initialize
-        @hash = {}
-        @now_hash = {}
-      end
-    
-      def [](key)
-        @hash[key]
-      end
-    
-      def []=(key, obj)
-        @hash[key] = obj
-      end
-    
-      def discard(k = nil)
-        initialize
-      end
-    
-      def now
-        @now_hash
-      end
-    
-      def update(hash)
-        @hash.update(hash)
-      end
-      
-      def sweep
-        # do nothing
-      end
-    end
-  end
-end

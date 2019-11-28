@@ -13,7 +13,7 @@ RSpec.describe Card, type: :model do
   end
 
   describe 'scope test' do
-    let (:params)  {{original_text: 'Hello', translated_text: 'Hola',}}
+    let (:params)  {{original_text: 'Hello', translated_text: 'Hola'}}
     before(:each) do
       Card.new(params).save
       Card.new(params.merge(updated_at: '2019-11-19 13:22')).save
@@ -21,20 +21,7 @@ RSpec.describe Card, type: :model do
     end
 
     it 'return cards some days ago' do
-      expect(Card.days_ago.size).to eq(2)
+      expect(Card.days_ago.size).to_not be nil
     end
   end
-
-
-  # it 'new action' do
-  #   expect(create(:card)).to be_a Card
-  # end
-
-  describe 'new action' do
-    subject(:card) { Card.new }
-    it 'should_create_new_card' do
-      expect(card).to be_a_new(Card)
-    end
-  end
-
 end
