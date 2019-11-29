@@ -18,7 +18,6 @@ gem 'sqlite3', '~> 1.4'
 gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 4.0'
 
-
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'rspec-core'
@@ -38,11 +37,11 @@ end
 
 group :test do
   gem 'capybara', '>= 2.15'
-  gem 'selenium-webdriver'
-  gem 'webdrivers'
-  gem 'shoulda-matchers', github: 'thoughtbot/shoulda-matchers'
-  gem 'rails-controller-testing'
   gem 'factory_bot_rails'
+  gem 'rails-controller-testing'
+  gem 'selenium-webdriver'
+  gem 'shoulda-matchers', github: 'thoughtbot/shoulda-matchers'
+  gem 'webdrivers'
 end
 
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

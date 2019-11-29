@@ -24,7 +24,7 @@ class CardsController < ApplicationController
       flash[:success] = 'The card has created successfully'
       redirect_to @card
     else
-      flash.now[:error] = "Could not save the card"
+      flash.now[:error] = 'Could not save the card'
       render 'new'
     end
   end
@@ -35,7 +35,7 @@ class CardsController < ApplicationController
       flash[:success] = 'The card has updated successfully'
       redirect_to @card
     else
-      flash.now[:error] = "Could not update the card"
+      flash.now[:error] = 'Could not update the card'
       render 'edit'
     end
   end
