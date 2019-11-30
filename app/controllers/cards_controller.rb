@@ -22,7 +22,7 @@ class CardsController < ApplicationController
 
     if @card.save
       flash[:success] = 'The card has created successfully'
-      redirect_to @card
+      redirect_to cards_path
     else
       flash.now[:error] = 'Could not save the card'
       render 'new'

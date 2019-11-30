@@ -3,62 +3,62 @@
 require 'rails_helper'
 
 RSpec.feature 'Cards', type: :feature do
-  context 'create new card' do
-    before(:each) do
+  describe 'create new card' do
+    before do
       visit new_card_path
       find('input#card_original_text').set('foo')
     end
-    scenario 'should be successfull' do
+    scenario 'successfully creates card' do
       find('input#card_translated_text').set('bar')
       click_button 'Create Card'
       expect(page).to have_content('The card has created successfully')
     end
 
-    scenario 'should fail' do
+    scenario 'fail to create card' do
       click_button 'Create Card'
       expect(page).to have_content('Could not save the card')
     end
   end
 
-  context 'update card' do
-    let(:card) { FactoryBot.create :card }
-    before(:each) do
+  describe 'update card' do
+    let!(:card) { FactoryBot.create :card }
+    before do
       visit edit_card_path(card)
     end
-    scenario 'should be successful' do
+    scenario 'successfuly update card' do
       find('input#card_original_text').set('foo')
       click_button 'Update Card'
       expect(page).to have_content('The card has updated successfully')
     end
 
-    scenario 'should be fail' do
+    scenario 'fail to update card' do
       find('input#card_original_text').set('')
       click_button 'Update Card'
       expect(page).to have_content('Could not update the card')
     end
   end
 
-  context 'destroy card' do
-    let(:card) { FactoryBot.create :card }
-    before(:each) do
+  describe 'destroy card' do
+    let!(:card) { FactoryBot.create :card }
+    before do
       visit cards_path
     end
-    scenario 'should be successful' do
+    scenario 'successfuly destroy card' do
       click_button 'Destroy', match: :first
       expect(page).to have_content('The card was removed successfully')
     end
   end
 
-  context 'trainer card' do
-    before(:each) do
+  describe 'trainer card' do
+    before do
       visit cards_path
     end
-    scenario 'should be successfull' do
+    scenario 'successfully trains card' do
       find('input#other_user_answer').set('Hello')
       click_button 'Check'
       expect(page).to have_content('Awesome!')
     end
-    scenario 'should be fail' do
+    scenario 'fail to train card' do
       find('input#other_user_answer').set('foo')
       click_button 'Check'
       expect(page).to have_content('Try again!')
