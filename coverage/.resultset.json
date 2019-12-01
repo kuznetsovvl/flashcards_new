@@ -24,6 +24,15 @@
         null,
         null,
         null,
+        1,
+        2,
+        null,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
         null
       ],
       "/Users/antonsereda/Documents/Ruby on rails/flashcards_new/spec/rails_helper.rb": [
@@ -1002,8 +1011,8 @@
         1,
         null,
         1,
-        15,
-        3,
+        16,
+        4,
         null,
         null,
         null
@@ -1029,14 +1038,14 @@
         null,
         null,
         1,
-        4,
+        5,
         null,
-        4,
+        5,
         3,
         3,
         null,
-        1,
-        1,
+        2,
+        2,
         null,
         null,
         null,
@@ -1071,7 +1080,7 @@
         1,
         null,
         1,
-        6,
+        7,
         null,
         null
       ],
@@ -1179,6 +1188,6 @@
         null
       ]
     },
-    "timestamp": 1575144107
+    "timestamp": 1575192599
   }
 }

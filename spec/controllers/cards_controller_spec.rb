@@ -19,5 +19,14 @@ RSpec.describe CardsController, type: :controller do
         expect(response).to redirect_to cards_path
       end
     end
+
+    context 'with invalid attributes' do
+    	let(:attrs) { Hash[original_text: nil, translated_text: nil]}
+
+    	it 'renders new form' do
+    		post :create, params: { card: attrs }
+    		expect(response).to render_template :new
+    	end
+    end
   end
 end
