@@ -1,3 +1,4 @@
 language: ruby
+dist: trusty
 rvm:
-  - truffleruby
+  - rbx-3
