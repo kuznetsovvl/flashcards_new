@@ -53,12 +53,10 @@ RSpec.feature 'Cards', type: :feature do
     before do
       visit cards_path
     end
-    scenario 'successfully trains card' do
-      find('input#other_user_answer').set('Hello')
-      click_button 'Check'
-      expect(page).to have_content('Awesome!')
-      puts (find('input#other_user_answer'))
-      puts (click_button 'Check')
+   puts scenario 'successfully trains card' do
+      puts find('input#other_user_answer').set('Hello')
+      puts click_button 'Check'
+      puts expect(page).to have_content('Awesome!')
     end
     scenario 'fail to train card' do
       find('input#other_user_answer').set('foo')
