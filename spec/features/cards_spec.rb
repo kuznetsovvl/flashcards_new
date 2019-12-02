@@ -57,6 +57,8 @@ RSpec.feature 'Cards', type: :feature do
       find('input#other_user_answer').set('Hello')
       click_button 'Check'
       expect(page).to have_content('Awesome!')
+      puts (find('input#other_user_answer'))
+      puts (click_button 'Check')
     end
     scenario 'fail to train card' do
       find('input#other_user_answer').set('foo')
