@@ -10,6 +10,11 @@
   <body>
     <section class="container">
     <%= render "shared/navigation" %>
+    <% flash.each do |key, value| %>
+      <%= content_tag(:div, class: "alert alert-#{key} alert-dismissable") do %>
+      <%= value %> 
+      <% end %> 
+    <% end %>
     <%= yield %>
     </section>
   </body>

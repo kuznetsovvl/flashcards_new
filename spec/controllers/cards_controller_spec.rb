@@ -2,9 +2,30 @@
 
 require 'rails_helper'
 
-describe 'Routing', type: :routing do
-  it do
-    should route(:get, '/cards', port: 3000).
-      to('cards#index')
+RSpec.describe CardsController, type: :controller do
+  describe 'POST #create' do
+    context 'with valid attributes' do
+      let(:attrs) { attributes_for :card }
+
+      it 'creates a new card' do
+        expect do
+          post :create, params: { card: attrs }
+        end.to change(Card, :count).by(1)
+      end
+
+      it 'redirects to card' do
+        post :create, params: { card: attrs }
+        expect(response).to redirect_to cards_path
+      end
+    end
+
+    context 'with invalid attributes' do
+      let(:attrs) { Hash[original_text: nil, translated_text: nil] }
+
+      it 'renders new form' do
+        post :create, params: { card: attrs }
+        expect(response).to render_template :new
+      end
+    end
   end
 end
