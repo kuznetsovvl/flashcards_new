@@ -26,6 +26,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'rspec-support'
   gem 'simplecov', require: false, group: :test
+  gem 'database_cleaner'
 end
 
 group :development do
@@ -42,6 +43,7 @@ group :test do
   gem 'selenium-webdriver'
   gem 'shoulda-matchers', github: 'thoughtbot/shoulda-matchers'
   gem 'webdrivers'
+
 end
 
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
