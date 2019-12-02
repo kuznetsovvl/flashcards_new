@@ -13,7 +13,7 @@ RSpec.describe Card, type: :model do
 
   describe 'scope test' do
     let (:params) { { original_text: 'Hello', translated_text: 'Hola' } }
-    before(:each) do
+    before do
       Card.new(params).save
       Card.new(params.merge(updated_at: '2019-11-19 13:22')).save
       Card.new(params.merge(updated_at: '2019-11-19 13:22')).save
