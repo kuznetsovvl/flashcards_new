@@ -50,7 +50,7 @@ RSpec.feature 'Cards', type: :feature do
   end
 
   describe 'trainer card' do
-    let!(:card) { FactoryBot.build :card }
+    let!(:card) { FactoryBot.create :card }
     before do
       visit cards_path
     end
