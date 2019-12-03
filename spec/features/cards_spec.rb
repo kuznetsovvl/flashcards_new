@@ -50,12 +50,12 @@ RSpec.feature 'Cards', type: :feature do
   end
 
   describe 'trainer card' do
-    let!(:card) { FactoryBot.create :card }
+    let!(:card) { create(:card, updated_at: 10.days.ago) }
     before do
       visit cards_path
     end
     scenario 'successfully trains card' do
-      find('input#other_user_answer').set('Hello')
+      find('input#other_user_answer').set('Hola')
       click_button 'Check'
       expect(page).to have_content('Awesome!')
     end
