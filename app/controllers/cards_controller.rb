@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
 class CardsController < ApplicationController
+  before_action :set_card, except: %i(index new create)
+
   def index
     @cards = Card.all
   end
 
   def show
-    @card = Card.find(params[:id])
   end
 
   def new
@@ -14,7 +15,6 @@ class CardsController < ApplicationController
   end
 
   def edit
-    @card = Card.find(params[:id])
   end
 
   def create
@@ -30,7 +30,6 @@ class CardsController < ApplicationController
   end
 
   def update
-    @card = Card.find(params[:id])
     if @card.update(card_params)
       flash[:success] = 'The card has updated successfully'
       redirect_to @card
@@ -41,14 +40,12 @@ class CardsController < ApplicationController
   end
 
   def destroy
-    @card = Card.find(params[:id])
     @card.destroy
     flash[:success] = 'The card was removed successfully'
     redirect_to cards_path
   end
 
   def trainer
-    @card = Card.find(params[:id])
     if @card[:translated_text] == params[:other][:user_answer]
       @card.touch
       flash.now[:success] = 'Awesome!'
@@ -58,6 +55,10 @@ class CardsController < ApplicationController
   end
 
   private
+
+  def set_card
+    @card = Card.find(params[:id])
+  end
 
   def card_params
     params.require(:card).permit(:original_text, :translated_text)

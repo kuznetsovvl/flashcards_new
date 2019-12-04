@@ -32,6 +32,7 @@
 en:
   name: "Cards: "
   description: "Translate: "
+  updating_date: "Last checking: "
   header: "Flashcarder"
   header_subtitle: "The first manager of flash-cards. Exactly."
   add_card_link: "Add a card"

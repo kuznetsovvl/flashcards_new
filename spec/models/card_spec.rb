@@ -12,15 +12,15 @@ RSpec.describe Card, type: :model do
   end
 
   describe 'scope test' do
-    let (:params) { { original_text: 'Hello', translated_text: 'Hola' } }
+    let (:card) { FactoryBot.create :card}
     before do
-      Card.new(params).save
-      Card.new(params.merge(updated_at: '2019-11-19 13:22')).save
-      Card.new(params.merge(updated_at: '2019-11-19 13:22')).save
+      :card
+      create(:card, updated_at: 4.days.ago )
+      create(:card, updated_at: 4.days.ago )
     end
 
     it 'return cards some days ago' do
-      expect(Card.days_ago.size).to_not be nil
+      expect(Card.days_ago.size).to eq(2)
     end
   end
 end
