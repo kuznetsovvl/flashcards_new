@@ -20,7 +20,7 @@ RSpec.describe CardsController, type: :controller do
     end
 
     context 'with invalid attributes' do
-      let(:attrs) { { original_text: nil, translated_text: nil }}
+      let(:attrs) { { original_text: nil, translated_text: nil } }
 
       it 'renders new form' do
         post :create, params: { card: attrs }

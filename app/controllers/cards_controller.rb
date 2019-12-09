@@ -1,21 +1,19 @@
 # frozen_string_literal: true
 
 class CardsController < ApplicationController
-  before_action :set_card, except: %i(index new create)
+  before_action :set_card, except: %i[index new create]
 
   def index
     @cards = Card.all
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @card = Card.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @card = Card.new(card_params)

@@ -12,11 +12,11 @@ RSpec.describe Card, type: :model do
   end
 
   describe 'scope test' do
-    let (:card) { FactoryBot.create :card}
+    let (:card) { FactoryBot.create :card }
     before do
-      :card
-      create(:card, updated_at: 4.days.ago )
-      create(:card, updated_at: 4.days.ago )
+      create(:card)
+      create(:card, updated_at: 4.days.ago)
+      create(:card, updated_at: 4.days.ago)
     end
 
     it 'return cards some days ago' do
