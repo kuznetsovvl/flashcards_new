@@ -12,7 +12,7 @@ class Scraper
 
   def process_page
     page.css('.entry-content tr').take(5).each do |a|
-      Card.create(
+      Card.create!(
         original_text: a.css('td:nth-last-child(2)').text,
         translated_text: a.css('td:last-child').text
       )
