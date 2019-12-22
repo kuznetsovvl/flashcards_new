@@ -14,6 +14,7 @@ gem 'rails', '~> 6.0.0'
 gem 'rubocop', '~> 0.75.1', require: false
 gem 'sass-rails', '~> 5'
 gem 'simple_form'
+gem 'sorcery'
 gem 'sqlite3', '~> 1.4'
 gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 4.0'

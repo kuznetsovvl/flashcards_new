@@ -17,10 +17,11 @@ class CardsController < ApplicationController
 
   def create
     @card = Card.new(card_params)
+    @card_user_id = current_user.id
 
     if @card.save
       flash[:success] = 'The card has created successfully'
-      redirect_to cards_path
+      redirect_to user_path(@user)
     else
       flash.now[:error] = 'Could not save the card'
       render 'new'
