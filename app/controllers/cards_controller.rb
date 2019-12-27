@@ -2,26 +2,27 @@
 
 class CardsController < ApplicationController
   before_action :set_card, except: %i[index new create]
+  before_action :require_login
 
   def index
-    @cards = Card.all
+    @cards = current_user.cards.all
   end
 
   def show; end
 
   def new
-    @card = Card.new
+    @card = current_user.cards.new
   end
 
   def edit; end
 
   def create
-    @card = Card.new(card_params)
+    @card = current_user.cards.new(card_params)
     @card_user_id = current_user.id
 
     if @card.save
       flash[:success] = 'The card has created successfully'
-      redirect_to user_path(@user)
+      redirect_to cards_path
     else
       flash.now[:error] = 'Could not save the card'
       render 'new'
@@ -54,6 +55,13 @@ class CardsController < ApplicationController
   end
 
   private
+
+  def require_login
+    unless logged_in?
+      flash[:error] = 'You must be logged in to access this section'
+      redirect_to new_user_url
+    end
+  end
 
   def set_card
     @card = Card.find(params[:id])

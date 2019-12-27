@@ -4,7 +4,12 @@ require 'rails_helper'
 
 RSpec.feature 'Cards', type: :feature do
   describe 'create new card' do
+    let!(:user) { FactoryBot.create :user }
     before do
+      visit login_path
+      find('input#email').set('example@mail.com')
+      find('input#password').set('12345')
+      click_button 'Log in'
       visit new_card_path
       find('input#card_original_text').set('foo')
     end
@@ -23,6 +28,10 @@ RSpec.feature 'Cards', type: :feature do
   describe 'update card' do
     let!(:card) { FactoryBot.create :card }
     before do
+      visit login_path
+      find('input#email').set('example@mail.com')
+      find('input#password').set('12345')
+      click_button 'Log in'
       visit edit_card_path(card)
     end
     scenario 'successfuly update card' do
@@ -41,6 +50,10 @@ RSpec.feature 'Cards', type: :feature do
   describe 'destroy card' do
     let!(:card) { FactoryBot.create :card }
     before do
+      visit login_path
+      find('input#email').set('example@mail.com')
+      find('input#password').set('12345')
+      click_button 'Log in'
       visit cards_path
     end
     scenario 'successfuly destroy card' do
@@ -52,6 +65,10 @@ RSpec.feature 'Cards', type: :feature do
   describe 'trainer card' do
     let!(:card) { create(:card, updated_at: 10.days.ago) }
     before do
+      visit login_path
+      find('input#email').set('example@mail.com')
+      find('input#password').set('12345')
+      click_button 'Log in'
       visit cards_path
     end
     scenario 'successfully trains card' do
