@@ -13,8 +13,4 @@ FactoryBot.define do
     translated_text { 'Hola' }
     updated_at { Time.now }
   end
-
-    factory :userqwe do
-      user_id { '1' }
-  end
 end
