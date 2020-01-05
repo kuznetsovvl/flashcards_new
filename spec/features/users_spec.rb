@@ -26,4 +26,18 @@ RSpec.feature 'Cards', type: :feature do
       expect(page).to have_content('Password confirmation doesn\'t match Password')
     end
   end
+
+  describe 'login user' do
+    let!(:user) { FactoryBot.create :user }
+
+    before do
+      visit login_path
+      find('input#email').set('example@mail.com')
+    end
+    scenario 'wrong email or password' do
+      find('input#password').set('54321')
+      click_button 'Log in'
+      expect(page).to have_content('Email or password was invalid')
+    end
+  end
 end

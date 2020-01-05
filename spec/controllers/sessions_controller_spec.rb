@@ -12,7 +12,7 @@ RSpec.describe SessionsController, type: :controller do
 
   describe 'POST #create' do
     let(:attrs) { { email: 'example', password: '12345' } }
-
+    let!(:user) { create(:user) }
     it 'successfully create a session' do
       expect do
         post :create, params: { user: attrs }
