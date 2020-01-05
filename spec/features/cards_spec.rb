@@ -74,9 +74,11 @@ RSpec.feature 'Cards', type: :feature do
   private
 
   def login_scenario
-    visit login_path
+    visit '/sessions/new'
     find('input#email').set('example@mail.com')
     find('input#password').set('12345')
-    click_button 'Log in'
+    within('.actions') do
+      click_button 'Log in'
+    end
   end
 end
