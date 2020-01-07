@@ -6,8 +6,8 @@ RSpec.describe CardsController, type: :controller do
   describe 'POST #create' do
     context 'with valid attributes' do
       let(:attrs) { attributes_for :card }
-      let!(:user) do
-        user = create(:user)
+      let!(:user) { create :user }
+      before do
         login_user(user)
       end
       it 'creates a new card' do
@@ -24,8 +24,8 @@ RSpec.describe CardsController, type: :controller do
 
     context 'with invalid attributes' do
       let(:attrs) { { original_text: nil, translated_text: nil } }
-      let!(:user) do
-        user = create(:user)
+      let!(:user) { create :user }
+      before do
         login_user(user)
       end
       it 'renders new form' do

@@ -41,3 +41,6 @@ en:
   invalid_login: "Email or password was invalid"
   enter_login: "Logged in!"
   exit_login: "Logged out"
+  title_login: 'Log in'
+  title_sign_up: 'Sign up'
+  title_error_message: 'Form is invalid'

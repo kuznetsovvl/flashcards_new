@@ -4,8 +4,6 @@ class User < ApplicationRecord
   authenticates_with_sorcery!
   has_many :cards
 
-  validates :password, confirmation: true
-  validates :password, presence: true
-  validates :email, presence: true
-  validates :email, uniqueness: true
+  validates :password, confirmation: true, presence: true
+  validates :email, presence: true, uniqueness: true
 end

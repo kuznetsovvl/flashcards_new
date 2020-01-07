@@ -18,7 +18,6 @@ class CardsController < ApplicationController
 
   def create
     @card = current_user.cards.new(card_params)
-    @card_user_id = current_user.id
 
     if @card.save
       flash[:success] = 'The card has created successfully'

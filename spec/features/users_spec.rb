@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.feature 'Cards', type: :feature do
+RSpec.feature 'Users', type: :feature do
   describe 'create new user' do
     before do
       visit '/users/new'
