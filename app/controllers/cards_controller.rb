@@ -2,21 +2,22 @@
 
 class CardsController < ApplicationController
   before_action :set_card, except: %i[index new create]
+  before_action :require_login
 
   def index
-    @cards = Card.all
+    @cards = current_user.cards.all
   end
 
   def show; end
 
   def new
-    @card = Card.new
+    @card = current_user.cards.new
   end
 
   def edit; end
 
   def create
-    @card = Card.new(card_params)
+    @card = current_user.cards.new(card_params)
 
     if @card.save
       flash[:success] = 'The card has created successfully'

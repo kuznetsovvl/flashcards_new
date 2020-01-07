@@ -37,3 +37,10 @@ en:
   header_subtitle: "The first manager of flash-cards. Exactly."
   add_card_link: "Add a card"
   all_card_link: "All cards"
+  should_login: "You must be logged in to access this section"
+  invalid_login: "Email or password was invalid"
+  enter_login: "Logged in!"
+  exit_login: "Logged out"
+  title_login: 'Log in'
+  title_sign_up: 'Sign up'
+  title_error_message: 'Form is invalid'

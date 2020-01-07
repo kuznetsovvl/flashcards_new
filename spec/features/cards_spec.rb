@@ -4,7 +4,9 @@ require 'rails_helper'
 
 RSpec.feature 'Cards', type: :feature do
   describe 'create new card' do
+    let!(:user) { FactoryBot.create :user }
     before do
+      login_scenario
       visit new_card_path
       find('input#card_original_text').set('foo')
     end
@@ -23,6 +25,7 @@ RSpec.feature 'Cards', type: :feature do
   describe 'update card' do
     let!(:card) { FactoryBot.create :card }
     before do
+      login_scenario
       visit edit_card_path(card)
     end
     scenario 'successfuly update card' do
@@ -41,6 +44,7 @@ RSpec.feature 'Cards', type: :feature do
   describe 'destroy card' do
     let!(:card) { FactoryBot.create :card }
     before do
+      login_scenario
       visit cards_path
     end
     scenario 'successfuly destroy card' do
@@ -52,6 +56,7 @@ RSpec.feature 'Cards', type: :feature do
   describe 'trainer card' do
     let!(:card) { create(:card, updated_at: 10.days.ago) }
     before do
+      login_scenario
       visit cards_path
     end
     scenario 'successfully trains card' do
@@ -63,6 +68,17 @@ RSpec.feature 'Cards', type: :feature do
       find('input#other_user_answer').set('foo')
       click_button 'Check'
       expect(page).to have_content('Try again!')
+    end
+  end
+
+  private
+
+  def login_scenario
+    visit '/sessions/new'
+    find('input#email').set('example@mail.com')
+    find('input#password').set('12345')
+    within('.actions') do
+      click_button 'Log in'
     end
   end
 end

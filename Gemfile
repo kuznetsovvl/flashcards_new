@@ -5,6 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.3'
 gem 'bootsnap', '>= 1.4.2', require: false
+gem 'fabrication'
 gem 'jbuilder', '~> 2.7'
 gem 'nokogiri'
 gem 'pg', '~> 0.21'
@@ -14,6 +15,7 @@ gem 'rails', '~> 6.0.0'
 gem 'rubocop', '~> 0.75.1', require: false
 gem 'sass-rails', '~> 5'
 gem 'simple_form'
+gem 'sorcery'
 gem 'sqlite3', '~> 1.4'
 gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 4.0'

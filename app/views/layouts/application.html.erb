@@ -10,6 +10,15 @@
   <body>
     <section class="container">
     <%= render "shared/navigation" %>
+       <div class="user_nav">
+        <% if current_user %>
+          Logged in as <%= current_user.email %>
+          <%= button_to "Log out", logout_path %>
+        <% else %>
+          <%= button_to "Sign up", signup_path %>
+          <%= button_to "Log in", login_path %>
+        <% end %>
+      </div>   
     <% flash.each do |key, value| %>
       <%= content_tag(:div, class: "alert alert-#{key} alert-dismissable") do %>
       <%= value %> 
