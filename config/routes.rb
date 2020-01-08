@@ -3,7 +3,7 @@
 Rails.application.routes.draw do
   get 'welcome/index'
   root 'welcome#index'
-  post 'logout' => 'sessions#destroy', as: :logout
+  delete 'logout' => 'sessions#destroy', as: :logout
   post 'login' => 'sessions#new', as: :login
   post 'signup' => 'users#new', as: :signup
   get 'sessions/new'

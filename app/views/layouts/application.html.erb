@@ -13,7 +13,7 @@
        <div class="user_nav">
         <% if current_user %>
           Logged in as <%= current_user.email %>
-          <%= button_to "Log out", logout_path %>
+          <%= button_to "Log out", logout_url, method: :delete %>
         <% else %>
           <%= button_to "Sign up", signup_path %>
           <%= button_to "Log in", login_path %>
