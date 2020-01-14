@@ -1,0 +1,19 @@
+<div class="header">
+  <h1 class ="header-title"><%= t('header') %></h1>
+  <nav class="navbar">
+    <span class="navbar-link">
+      <p class="navbar-link-text"><i class="fas fa-border-all"></i></p>
+        <%= link_to t('all_card_link'), cards_path %>
+    </span>
+    <% if today_card.nil? %>
+      <%= render 'shared/info_form' %>
+    <% else %>
+      <%= render 'shared/trainer_form' %>
+    <% end %>
+    <span class="navbar-link">
+      <p class="navbar-link-text"><i class="fas fa-plus"></i></p>
+        <%= link_to t('add_card_link'), new_card_path %>
+    </span>
+	</nav>
+  <p class="header-subtitle"><%= t('header_subtitle') %></p>
+</div>
