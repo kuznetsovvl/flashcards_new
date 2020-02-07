@@ -13,10 +13,12 @@
        <div class="user_nav">
         <% if current_user %>
           Logged in as <%= current_user.email %>
-          <%= button_to "Log out", logout_path %>
+          <%= button_to "Log out", logout_path, method: :delete %>
         <% else %>
           <%= button_to "Sign up", signup_path %>
           <%= button_to "Log in", login_path %>
+          <%= link_to 'Login with Github', auth_at_provider_path(provider: :github) %> | 
+          <%= link_to 'Login with Facebook', auth_at_provider_path(:provider => :facebook) %>
         <% end %>
       </div>   
     <% flash.each do |key, value| %>

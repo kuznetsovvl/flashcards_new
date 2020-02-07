@@ -1,12 +1,18 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get 'oauths/oauth'
+  get 'oauths/callback'
   get 'welcome/index'
   root 'welcome#index'
-  post 'logout' => 'sessions#destroy', as: :logout
+  delete 'logout' => 'sessions#destroy', as: :logout
   post 'login' => 'sessions#new', as: :login
   post 'signup' => 'users#new', as: :signup
   get 'sessions/new'
+  get 'oath/oauth'
+  post 'oauth/callback' => 'oauths#callback'
+  get 'oauth/callback' => 'oauths#callback' # for use with Github, Facebook
+  get 'oauth/:provider' => 'oauths#oauth', :as => :auth_at_provider
   resources :users do
     resources :cards
   end

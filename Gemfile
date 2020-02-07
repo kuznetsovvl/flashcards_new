@@ -22,6 +22,7 @@ gem 'webpacker', '~> 4.0'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'figaro'
   gem 'rspec-core'
   gem 'rspec-expectations'
   gem 'rspec-mocks'
@@ -44,7 +45,9 @@ group :test do
   gem 'rails-controller-testing'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers', github: 'thoughtbot/shoulda-matchers'
+  gem 'vcr'
   gem 'webdrivers'
+  gem 'webmock'
 end
 
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
