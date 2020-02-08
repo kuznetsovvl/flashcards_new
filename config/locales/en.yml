@@ -42,5 +42,8 @@ en:
   enter_login: "Logged in!"
   exit_login: "Logged out"
   title_login: 'Log in'
-  title_sign_up: 'Sign up'
+  title_sign_up: 'Sign up!'
   title_error_message: 'Form is invalid'
+  title_login_external: 'Logged in from'
+  title_failed_login_external: 'Failed to login from'
+  login_github: 'Login with Github'

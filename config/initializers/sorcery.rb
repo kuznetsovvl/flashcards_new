@@ -6,10 +6,29 @@
 # Available submodules are: :user_activation, :http_basic_auth, :remember_me,
 # :reset_password, :session_timeout, :brute_force_protection, :activity_logging,
 # :magic_login, :external
-Rails.application.config.sorcery.submodules = []
+Rails.application.config.sorcery.submodules = [:external]
 
 # Here you can configure each submodule's features.
 Rails.application.config.sorcery.configure do |config|
+  config.external_providers = [:github]
+
+  config.github.key = ENV['SORCERY_GITHUB_KEY']
+  config.github.secret = ENV['SORCERY_GITHUB_SECRET']
+  config.github.callback_url = ENV['SORCERY_GITHUB_CALLBACK_URL']
+  config.github.user_info_mapping = { email: 'name' }
+  config.github.scope = ''
+
+  # config.twitter.key = "<your key here>"
+  # config.twitter.secret = "<your key here>"
+  # config.twitter.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=twitter"
+  # config.twitter.user_info_mapping = {:username => "screen_name"}
+
+  # config.facebook.key = "<your key here>"
+  # config.facebook.secret = "<your key here>"
+  # config.facebook.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=facebook"
+  # config.facebook.user_info_mapping = {:email => "email" } #etc
+  # config.facebook.scope = "email,offline_access,user_hometown,user_interests,user_likes" #etc
+  # config.facebook.display = "popup"
   # -- core --
   # What controller action to call for non-authenticated users. You can also
   # override the 'not_authenticated' method of course.
@@ -123,18 +142,12 @@ Rails.application.config.sorcery.configure do |config|
   # config.facebook.display = "page"
   # config.facebook.api_version = "v2.3"
   # config.facebook.parse = :json
-  #
+
   # config.instagram.key = ""
   # config.instagram.secret = ""
   # config.instagram.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=instagram"
   # config.instagram.user_info_mapping = {:email => "username"}
   # config.instagram.access_permissions = ["basic", "public_content", "follower_list", "comments", "relationships", "likes"]
-  #
-  # config.github.key = ""
-  # config.github.secret = ""
-  # config.github.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=github"
-  # config.github.user_info_mapping = {:email => "name"}
-  # config.github.scope = ""
   #
   # config.paypal.key = ""
   # config.paypal.secret = ""
@@ -169,12 +182,12 @@ Rails.application.config.sorcery.configure do |config|
   # config.microsoft.user_info_mapping = {:email => "userPrincipalName", :username => "displayName"}
   # config.microsoft.scope = "openid email https://graph.microsoft.com/User.Read"
   #
-  # config.vk.key = ""
-  # config.vk.secret = ""
+  # config.vk.key = "7297694"
+  # config.vk.secret = "0f54ac190f54ac190f54ac19890f3bf68700f540f54ac19517b90f90daad2d0a8a48c5f"
   # config.vk.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=vk"
   # config.vk.user_info_mapping = {:login => "domain", :name => "full_name"}
   # config.vk.api_version = "5.71"
-  #
+  # https://www.termsfeed.com/privacy-policy/fab0fc020da1b6908d765cda8511113d
   # config.slack.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=slack"
   # config.slack.key = ''
   # config.slack.secret = ''
@@ -219,6 +232,7 @@ Rails.application.config.sorcery.configure do |config|
 
   # --- user config ---
   config.user_config do |user|
+    user.authentications_class = Authentication
     # -- core --
     # Specify username attributes, for example: [:username, :email].
     # Default: `[:email]`
