@@ -1,0 +1,7 @@
+development:
+  SORCERY_GITHUB_KEY: "cd5cce5cecb001da9a3c"
+  SORCERY_GITHUB_SECRET: "7ab53a32ea1e9b72bd4f5d1387b8c6cedf874ed2"
+
+test: 
+  SORCERY_GITHUB_KEY: "cd5cce5cecb001da9a3c"
+  SORCERY_GITHUB_SECRET: "7ab53a32ea1e9b72bd4f5d1387b8c6cedf874ed2"

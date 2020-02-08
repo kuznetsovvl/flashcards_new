@@ -36,4 +36,3 @@ yarn-debug.log*
 coverage/
 config/initializers/sorcery.rb
 # Ignore application configuration
-/config/application.yml
