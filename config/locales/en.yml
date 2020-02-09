@@ -45,4 +45,6 @@ en:
   title_login: 'Log in'
   title_sign_up: 'Sign up!'
   title_error_message: 'Form is invalid'
-  login_github: 'Login with Github'
+  login_github: "Login with Github"
+  login_external: "Login with %{provider}"
+  failed_login_external: "Failed to login from %{provider}"
