@@ -10,9 +10,12 @@ Rails.application.routes.draw do
   post 'signup' => 'users#new', as: :signup
   get 'sessions/new'
   get 'oath/oauth'
-  post 'oauth/callback' => 'oauths#callback'
-  get 'oauth/callback' => 'oauths#callback' # for use with Github, Facebook
-  get 'oauth/:provider' => 'oauths#oauth', :as => :auth_at_provider
+  scope '/oauth' do
+    post 'callback' => 'oauths#callback'
+    get 'callback' => 'oauths#callback'
+    get ':provider' => 'oauths#oauth', :as => :auth_at_provider
+  end
+
   resources :users do
     resources :cards
   end

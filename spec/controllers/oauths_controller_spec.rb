@@ -24,11 +24,6 @@ RSpec.describe OauthsController, type: :controller do
       allow_any_instance_of(described_class)
         .to receive(:login_from)
         .with(any_args).and_return(user)
-
-      # controller.instance_variable_set(
-      #   :@user_hash,
-      #   user_info: { 'uid' => uid, 'email' => email }
-      # )
     end
 
     context 'user was not authenticated previously' do

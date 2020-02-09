@@ -10,17 +10,15 @@ class OauthsController < ApplicationController
   def callback
     provider = auth_params[:provider]
     if @user = login_from(provider)
-      redirect_to root_path, notice: "Logged in from #{provider.titleize}!"
+      redirect_to root_path, notice: "#{t('title_login_external')} #{provider.titleize}!"
     else
       begin
         @user = create_from(provider)
-        # NOTE: this is the place to add '@user.activate!' if you are using user_activation submodule
-
-        reset_session # protect from session fixation attack
+        reset_session
         auto_login(@user)
-        redirect_to root_path, notice: "Logged in from #{provider.titleize}!"
+        redirect_to root_path, notice: "#{t('title_login_external')} #{provider.titleize}!"
       rescue StandardError
-        redirect_to root_path, alert: "Failed to login from #{provider.titleize}!"
+        redirect_to root_path, alert: "#{t('title_failed_login_external')} #{provider.titleize}!"
       end
     end
   end

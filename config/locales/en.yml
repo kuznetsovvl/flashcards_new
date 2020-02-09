@@ -39,8 +39,10 @@ en:
   all_card_link: "All cards"
   should_login: "You must be logged in to access this section"
   invalid_login: "Email or password was invalid"
+  logout: 'Log out'
   enter_login: "Logged in!"
   exit_login: "Logged out"
   title_login: 'Log in'
-  title_sign_up: 'Sign up'
+  title_sign_up: 'Sign up!'
   title_error_message: 'Form is invalid'
+  login_github: 'Login with Github'
