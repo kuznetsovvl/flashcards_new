@@ -27,6 +27,28 @@ RSpec.feature 'Users', type: :feature do
     end
   end
 
+  describe 'update user' do
+    let!(:user) { FactoryBot.create :user }
+    before do
+      visit edit_user_path(user)
+    end
+    scenario 'successfuly update user' do
+      find('input#user_email').set('test@mail.com')
+      find('input#user_password').set('54321')
+      find('input#user_password_confirmation').set('54321')
+      click_button 'Update User'
+      expect(page).to have_content('The user has updated successfully')
+    end
+
+    scenario 'fail to update user' do
+      find('input#user_email').set('test@mail.com')
+      find('input#user_password').set('54321')
+      click_button 'Update User'
+      expect(page).to have_content('Could not update the user')
+    end
+
+  end
+
   describe 'login user' do
     let!(:user) { FactoryBot.create :user }
 

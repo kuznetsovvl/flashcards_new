@@ -3,10 +3,17 @@
 Rails.application.routes.draw do
   get 'welcome/index'
   root 'welcome#index'
-  post 'logout' => 'sessions#destroy', as: :logout
+  delete 'logout' => 'sessions#destroy', as: :logout
   post 'login' => 'sessions#new', as: :login
   post 'signup' => 'users#new', as: :signup
   get 'sessions/new'
+
+  scope '/oauth' do
+    post 'callback' => 'oauths#callback'
+    get 'callback' => 'oauths#callback'
+    get ':provider' => 'oauths#oauth', as: :auth_at_provider
+  end
+
   resources :users do
     resources :cards
   end
