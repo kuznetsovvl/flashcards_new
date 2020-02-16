@@ -9,7 +9,6 @@
   </head>
   <body>
     <section class="container">
-    <%= render "shared/navigation" %>
        <div class="user_nav">
         <% if current_user %>
           Logged in as <%= current_user.email %>
@@ -20,7 +19,8 @@
           <%= button_to t('title_login'), login_path %>         
           <%= link_to t('login_github'), auth_at_provider_path(:provider => :github) %>
         <% end %>
-      </div>   
+      </div>
+      <%= render "shared/navigation" %>   
     <% flash.each do |key, value| %>
       <%= content_tag(:div, class: "alert alert-#{key} alert-dismissable") do %>
       <%= value %> 

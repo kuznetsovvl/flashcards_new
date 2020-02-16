@@ -12,6 +12,7 @@ RSpec.feature 'Cards', type: :feature do
     end
     scenario 'successfully creates card' do
       find('input#card_translated_text').set('bar')
+      attach_file('card_image', "#{Rails.root}/spec/support/test.jpg")
       click_button 'Create Card'
       expect(page).to have_content('The card has created successfully')
     end
@@ -30,6 +31,7 @@ RSpec.feature 'Cards', type: :feature do
     end
     scenario 'successfuly update card' do
       find('input#card_original_text').set('foo')
+      attach_file('card_image', "#{Rails.root}/spec/support/test.jpg")
       click_button 'Update Card'
       expect(page).to have_content('The card has updated successfully')
     end

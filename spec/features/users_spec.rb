@@ -46,7 +46,6 @@ RSpec.feature 'Users', type: :feature do
       click_button 'Update User'
       expect(page).to have_content('Could not update the user')
     end
-
   end
 
   describe 'login user' do

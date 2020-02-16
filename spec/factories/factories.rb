@@ -15,6 +15,10 @@ FactoryBot.define do
     end
   end
 
+  factory :image do
+    image { File.new("#{Rails.root}/spec/support/test.jpg") }
+  end
+
   trait :authenticated_through_github do
     after(:create) do |user|
       create(:authentication, :github, user: user)

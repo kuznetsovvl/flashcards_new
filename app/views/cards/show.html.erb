@@ -1,3 +1,4 @@
+  <%= image_tag @card.image.url %> <br>
   <%= t('name') %> <%= @card.original_text %> <br>
   <%= t('description') %><%= @card.translated_text %> <br>
   <%= t('updating_date') %><%= @card.updated_at.strftime("%Y-%b-%d") %> <br>
