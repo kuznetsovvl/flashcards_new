@@ -4,8 +4,8 @@ development:
   SORCERY_GITHUB_CALLBACK_URL: "http://localhost:3000/oauth/callback?provider=github"
 
   S3_BUCKET_NAME: "rails-flashcards"
-  AWS_ACCESS_KEY_ID: "AKIASXMIDJ2FZKJN6I4L"
-  AWS_SECRET_ACCESS_KEY: "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"
+  AWS_ACCESS_KEY_ID: "AKIAI7PM4WAVPXKPZS2Q"
+  AWS_SECRET_ACCESS_KEY: "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"
   AWS_REGION: "us-east-2"
   
 test: 
@@ -14,6 +14,6 @@ test:
   SORCERY_GITHUB_CALLBACK_URL: "http://localhost:3000/oauth/callback?provider=github"
 
   S3_BUCKET_NAME: "rails-flashcards"
-  AWS_ACCESS_KEY_ID: "AKIASXMIDJ2FZKJN6I4L"
-  AWS_SECRET_ACCESS_KEY: "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"
+  AWS_ACCESS_KEY_ID: "AKIAI7PM4WAVPXKPZS2Q"
+  AWS_SECRET_ACCESS_KEY: "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"
   AWS_REGION: "us-east-2"
