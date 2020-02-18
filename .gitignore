@@ -23,6 +23,8 @@
 
 /public/assets
 .byebug_history
+/public/system
+config/application.yml
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
@@ -35,6 +37,5 @@ yarn-debug.log*
 .yarn-integrity
 coverage/
 config/initializers/sorcery.rb
-public/system
-config/application.yml
+
 # Ignore application configuration
