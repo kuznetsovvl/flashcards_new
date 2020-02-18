@@ -32,6 +32,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'rspec-support'
   gem 'simplecov', require: false, group: :test
+  gem 'travis'
 end
 
 group :development do
