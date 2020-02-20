@@ -15,5 +15,5 @@ test :
   encoding: unicode
   database: blog_test
   pool: 5
-  username: flashcard
+  username: postgres
   password:
