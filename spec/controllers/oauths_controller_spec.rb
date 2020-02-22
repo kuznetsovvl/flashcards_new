@@ -5,6 +5,7 @@ require 'rails_helper'
 RSpec.describe OauthsController, type: :controller do
   describe 'GET #oauth' do
     it 'returns http success' do
+      puts ENV['SORCERY_GITHUB_KEY'].to_yaml
       get :oauth, params: { provider: 'github' }
       expect(response).to redirect_to("https://github.com/login/oauth/authorize?client_id=cd5cce5cecb001da9a3c&display&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Foauth%2Fcallback%3Fprovider%3Dgithub&response_type=code&scope=&state")
     end
