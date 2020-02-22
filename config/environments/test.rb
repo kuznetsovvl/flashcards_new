@@ -48,4 +48,6 @@ Rails.application.configure do
   # Raises error for missing translations.
   # config.action_view.raise_on_missing_translations = true
   ENV['SORCERY_GITHUB_KEY'] = 'cd5cce5cecb001da9a3c'
+  ENV['SORCERY_GITHUB_SECRET'] = "7ab53a32ea1e9b72bd4f5d1387b8c6cedf874ed2"
+  ENV['SORCERY_GITHUB_CALLBACK_URL'] = "http://localhost:3000/oauth/callback?provider=github"
 end
