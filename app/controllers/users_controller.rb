@@ -23,7 +23,7 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       flash[:success] = 'The user has updated successfully'
       redirect_to root_path
-    else 
+    else
       flash.now[:error] = 'Could not update the user'
       render 'edit'
     end

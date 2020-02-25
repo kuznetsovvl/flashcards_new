@@ -1,4 +1,5 @@
 <% @cards.find_each do |card| %>
+  <%= image_tag card.image.url(:thumb) %> <br>
   <%= t('name') %> <%= card.original_text %> <br>
   <%= t('description') %><%= card.translated_text %> <br>
   <%= link_to 'Show', card_path(card) %> <br>
