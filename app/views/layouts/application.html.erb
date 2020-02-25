@@ -12,12 +12,12 @@
        <div class="user_nav">
         <% if current_user %>
           Logged in as <%= current_user.email %>
-          <%= button_to t('logout'), logout_path, method: :delete %>
-          <%= link_to t('title_update_user'), edit_user_path(current_user)%> 
+          <%= button_to t('button.logout'), logout_path, method: :delete %>
+          <%= link_to t('button.update_user'), edit_user_path(current_user)%> 
         <% else %>
-          <%= button_to t('title_sign_up'), signup_path %>
-          <%= button_to t('title_login'), login_path %>         
-          <%= link_to t('login_github'), auth_at_provider_path(:provider => :github) %>
+          <%= button_to t('button.sign_up'), signup_path %>
+          <%= button_to t('button.login'), login_path %>         
+          <%= link_to t('reg_users.login_github'), auth_at_provider_path(:provider => :github) %>
         <% end %>
       </div>
       <%= render "shared/navigation" %>   
