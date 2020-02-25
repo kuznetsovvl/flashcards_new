@@ -30,22 +30,33 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  name: "Cards: "
-  description: "Translate: "
-  updating_date: "Last checking: "
-  header: "Flashcarder"
-  header_subtitle: "The first manager of flash-cards. Exactly."
-  add_card_link: "Add a card"
-  all_card_link: "All cards"
-  should_login: "You must be logged in to access this section"
-  invalid_login: "Email or password was invalid"
-  logout: 'Log out'
-  enter_login: "Logged in!"
-  exit_login: "Logged out"
-  title_login: 'Log in'
-  title_sign_up: 'Sign up!'
-  title_error_message: 'Form is invalid'
-  login_github: "Login with Github"
-  login_external: "Login with %{provider}"
-  failed_login_external: "Failed to login from %{provider}"
-  title_update_user: "Update user info"
+  main_page:
+    header: "Flashcarder"
+    add_card_link: "Add a card"
+    all_card_link: "All cards"
+    header_subtitle: "The first manager of flash-cards. Exactly."
+  reg_users:
+    login: "Logged in!"
+    logout: "Logged out"
+    sign_up: 'Sign up!'
+    invalid_login: "Email or password was invalid"
+    should_login: "You must be logged in to access this section"
+    login_github: "Login with Github"
+    login_external: "Login with %{provider}"
+    failed_login_external: "Failed to login from %{provider}"   
+  button:
+    logout: 'Log out'
+    login: 'Log in'
+    sign_up: 'Sign up!'
+    update_user: "Update user info"
+  form:
+    login: 'Log in'
+    error_message: 'Form is invalid'
+  cards:
+    name: "Cards: "
+    description: "Translate: "
+    updating_date: "Last checking: "  
+  
+  
+
+  
