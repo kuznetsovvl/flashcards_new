@@ -12,7 +12,7 @@ gem 'nokogiri'
 gem 'paperclip'
 gem 'pg', '~> 0.21'
 gem 'pry'
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 3.12'
 gem 'rails', '~> 6.0.0'
 gem 'rmagick'
 gem 'rubocop', '~> 0.75.1', require: false
