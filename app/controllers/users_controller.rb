@@ -21,10 +21,10 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      flash[:success] = 'The user has updated successfully'
+      flash[:success] = I18n.t 'reg_users.success.update'
       redirect_to root_path
     else
-      flash.now[:error] = 'Could not update the user'
+      flash.now[:error] = I18n.t 'reg_users.error.update'
       render 'edit'
     end
   end

@@ -26,9 +26,14 @@ FactoryBot.define do
   end
 
   factory :card do
-    user
+    deck
     original_text { 'Hello' }
     translated_text { 'Hola' }
     updated_at { Time.now }
+  end
+
+  factory :deck do
+    user
+    name { Faker::Name.name }
   end
 end

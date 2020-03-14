@@ -12,7 +12,7 @@ RSpec.feature 'Users', type: :feature do
       find('input#user_password').set('12345')
       find('input#user_password_confirmation').set('12345')
       click_button 'Create User'
-      expect(page).to have_content('Sign up!')
+      expect(page).to have_content(I18n.t('button.sign_up'))
     end
 
     scenario 'fail to create user without password' do
@@ -37,14 +37,14 @@ RSpec.feature 'Users', type: :feature do
       find('input#user_password').set('54321')
       find('input#user_password_confirmation').set('54321')
       click_button 'Update User'
-      expect(page).to have_content('The user has updated successfully')
+      expect(page).to have_content(I18n.t('reg_users.success.update'))
     end
 
     scenario 'fail to update user' do
       find('input#user_email').set('test@mail.com')
       find('input#user_password').set('54321')
       click_button 'Update User'
-      expect(page).to have_content('Could not update the user')
+      expect(page).to have_content(I18n.t('reg_users.error.update'))
     end
   end
 

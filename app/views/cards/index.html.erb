@@ -1,8 +1,0 @@
-<% @cards.find_each do |card| %>
-  <%= image_tag card.image.url(:thumb) %> <br>
-  <%= t('cards.name') %> <%= card.original_text %> <br>
-  <%= t('cards.description') %><%= card.translated_text %> <br>
-  <%= link_to 'Show', card_path(card) %> <br>
-  <%= link_to 'Edit', edit_card_path(card) %> <br>
-  <%= button_to 'Destroy', card_path(card), method: :delete %> <br>
-<% end %>

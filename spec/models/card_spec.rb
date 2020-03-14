@@ -19,10 +19,10 @@ RSpec.describe Card, type: :model do
 
   describe 'scope test' do
     before do
-      create(:user) do |user|
-        user.cards.create(attributes_for(:card))
-        user.cards.create(attributes_for(:card, updated_at: 4.days.ago))
-        user.cards.create(attributes_for(:card, updated_at: 4.days.ago))
+      create(:deck) do |deck|
+        deck.cards.create(attributes_for(:card))
+        deck.cards.create(attributes_for(:card, updated_at: 4.days.ago))
+        deck.cards.create(attributes_for(:card, updated_at: 4.days.ago))
       end
     end
 

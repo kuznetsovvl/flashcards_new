@@ -6,6 +6,7 @@ ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../config/environment', __dir__)
 require 'rspec/rails'
 require 'capybara/rails'
+require 'capybara-screenshot/rspec'
 
 if Rails.env.production?
   abort('The Rails environment is running in production mode!')

@@ -1,0 +1,6 @@
+<% @decks.find_each do |deck| %>
+<%= t('deck.name')%> <%= deck.name %> <br>
+<%= link_to 'Show',deck_path(deck) %> <br>
+<%= link_to 'Edit',edit_deck_path(deck) %> <br>
+<%= button_to 'Destroy', deck_path(deck), method: :delete %> <br>
+<% end %>

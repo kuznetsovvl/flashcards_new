@@ -32,8 +32,8 @@
 en:
   main_page:
     header: "Flashcarder"
-    add_card_link: "Add a card"
-    all_card_link: "All cards"
+    add_deck_link: "Add a deck"
+    all_deck_link: "All decks"
     header_subtitle: "The first manager of flash-cards. Exactly."
   reg_users:
     login: "Logged in!"
@@ -43,7 +43,11 @@ en:
     should_login: "You must be logged in to access this section"
     login_github: "Login with Github"
     login_external: "Login with %{provider}"
-    failed_login_external: "Failed to login from %{provider}"   
+    failed_login_external: "Failed to login from %{provider}"
+    success:
+      update: 'The user has updated successfully'   
+    error:
+      update: 'Could not update the user'
   button:
     logout: 'Log out'
     login: 'Log in'
@@ -52,10 +56,29 @@ en:
   form:
     login: 'Log in'
     error_message: 'Form is invalid'
+  deck:
+    name: 'Deck: '
+    success:
+      create: 'The deck has created successfully' 
+      destroy: 'The deck was removed successfully'
+      update: 'The deck has updated successfully'
+    error:
+      create: 'Could not save the deck'
+      update: 'Could not update the deck'
   cards:
     name: "Cards: "
     description: "Translate: "
     updating_date: "Last checking: "  
+    success:
+      create: 'The card has created successfully'
+      update: 'The card has updated successfully'   
+      destroy: 'The card was removed successfully'
+    error:
+      update: 'Could not update the card'
+      create: 'Could not save the card'
+  trainer:
+    success: 'Awesome!'
+    error: 'Try again!'
   
   
 
