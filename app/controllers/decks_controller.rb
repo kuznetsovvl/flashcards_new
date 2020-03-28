@@ -44,7 +44,7 @@ class DecksController < ApplicationController
     end
   end
 
-    private
+  private
 
   def set_deck
     @deck = Deck.find(params[:id])
@@ -53,4 +53,4 @@ class DecksController < ApplicationController
   def deck_params
     params.require(:deck).permit(:name)
   end
-  end
+end

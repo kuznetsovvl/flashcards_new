@@ -40,18 +40,6 @@ RSpec.feature 'Decks', type: :feature do
     end
   end
 
-  # describe 'destroy deck' do
-  #   let!(:deck) { create (:deck) }
-  #   before do
-  #     login_scenario
-  #     visit decks_path
-  #   end
-  #   scenario 'successfuly destroy deck' do
-  #     click_button 'Destroy'
-  #     expect(page).to have_content(I18n.t('deck.success.destroy'))
-  #   end
-  # end
-
   private
 
   def login_scenario

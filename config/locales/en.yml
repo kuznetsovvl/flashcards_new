@@ -68,7 +68,9 @@ en:
   cards:
     name: "Cards: "
     description: "Translate: "
-    updating_date: "Last checking: "  
+    updating_date: "Last checking: "
+    create_new_card: 'Create new card'
+    new_card: 'New card'  
     success:
       create: 'The card has created successfully'
       update: 'The card has updated successfully'   

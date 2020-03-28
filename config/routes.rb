@@ -18,8 +18,7 @@ Rails.application.routes.draw do
     resources :cards
   end
   resources :users do
-    resources :decks do
-    end
+    resources :decks
   end
 
   resources :sessions, only: %i[new create destroy]

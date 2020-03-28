@@ -7,4 +7,4 @@
   <%= button_to 'Destroy', deck_card_path(@deck, card), method: :delete %> <br>
 <% end %>
 
-<%= link_to 'Create new card', new_deck_card_path(@deck) %>
+<%= link_to t('cards.create_new_card'), new_deck_card_path(@deck) %>

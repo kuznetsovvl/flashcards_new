@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20_200_229_070_123) do
   end
 
   create_table 'users', force: :cascade do |t|
-    t.string 'email', default: '77'
+    t.string 'email'
     t.string 'crypted_password'
     t.string 'salt'
     t.datetime 'created_at', precision: 6, null: false

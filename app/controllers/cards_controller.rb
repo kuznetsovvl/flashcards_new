@@ -17,7 +17,7 @@ class CardsController < ApplicationController
   def edit; end
 
   def create
-    @card = @deck.cards.create(card_params)
+    @card = @deck.cards.new(card_params)
 
     if @card.save
       flash[:success] = I18n.t 'cards.success.create'
