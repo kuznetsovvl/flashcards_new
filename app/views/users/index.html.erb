@@ -2,5 +2,5 @@
 <h2>Please choose the user</h2>
 
 <% @user.find_each do |user| %>
-	<%= user.email %> <%= link_to 'Show', card_path(@card) %><br>
+	<%= user.email %> <%= link_to t('link.show'), card_path(@card) %><br>
 <% end %>

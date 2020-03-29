@@ -39,6 +39,7 @@ en:
     login: "Logged in!"
     logout: "Logged out"
     sign_up: 'Sign up!'
+    edit: 'Editing users'
     invalid_login: "Email or password was invalid"
     should_login: "You must be logged in to access this section"
     login_github: "Login with Github"
@@ -53,11 +54,19 @@ en:
     login: 'Log in'
     sign_up: 'Sign up!'
     update_user: "Update user info"
+    check: 'Check'
+  link:
+    back: 'Back'
+    edit: 'Edit'
+    show: 'Show'
+    destroy: 'Destroy'
   form:
     login: 'Log in'
     error_message: 'Form is invalid'
   deck:
     name: 'Deck: '
+    new: 'New deck'
+    edit: 'Editing Deck'
     success:
       create: 'The deck has created successfully' 
       destroy: 'The deck was removed successfully'
@@ -70,7 +79,8 @@ en:
     description: "Translate: "
     updating_date: "Last checking: "
     create_new_card: 'Create new card'
-    new_card: 'New card'  
+    new: 'New card'
+    edit: 'Editing cards'
     success:
       create: 'The card has created successfully'
       update: 'The card has updated successfully'   
@@ -81,6 +91,7 @@ en:
   trainer:
     success: 'Awesome!'
     error: 'Try again!'
+  error: 'error'
   
   
 
