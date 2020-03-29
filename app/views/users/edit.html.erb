@@ -1,15 +1,6 @@
 <h1><%= t('reg_users.edit') %></h1>
 <%= form_for @user do |f| %>
-  <% if @user.errors.any? %>
-    <div class="error_messages">
-      <h2><%= t('title_error_message') %></h2>
-      <ul>
-        <% for message in @user.errors.full_messages %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= render "shared/validation", item: @user %>
   <p>
     <%= f.label :email %><br />
     <%= f.text_field :email %>
