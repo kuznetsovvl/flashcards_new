@@ -14,9 +14,13 @@ Rails.application.routes.draw do
     get ':provider' => 'oauths#oauth', as: :auth_at_provider
   end
 
-  resources :users do
+  resources :decks do
     resources :cards
   end
+  resources :users do
+    resources :decks
+  end
+
   resources :sessions, only: %i[new create destroy]
   resources :cards do
     put 'trainer', on: :member
