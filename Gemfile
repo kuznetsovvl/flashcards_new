@@ -20,7 +20,6 @@ gem 'sass-rails', '~> 5'
 gem 'simple_form'
 gem 'sorcery'
 gem 'turbolinks', '~> 5'
-gem 'webpacker', '~> 4.0'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
