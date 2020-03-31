@@ -8,23 +8,6 @@ FactoryBot.define do
   end
 
   factory :authentication do
-<<<<<<< HEAD
-    user
-    trait :github do
-      provider { :github }
-      uid { '12345678' }
-    end
-  end
-
-  trait :authenticated_through_github do
-    after(:create) do |user|
-      create(:authentication, :github, user: user)
-    end
-  end
-
-  factory :card do
-=======
->>>>>>> e753d0fa666cfee9a0454e77ce628c864f2f5eb8
     user
     trait :github do
       provider { :github }
