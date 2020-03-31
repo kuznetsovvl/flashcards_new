@@ -6,7 +6,11 @@ RSpec.describe OauthsController, type: :controller do
   describe 'GET #oauth' do
     it 'returns http success' do
       get :oauth, params: { provider: 'github' }
+<<<<<<< HEAD
       expect(response).to redirect_to("https://github.com/login/oauth/authorize?client_id=#{ENV['SORCERY_GITHUB_KEY']}&display&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Foauth%2Fcallback%3Fprovider%3Dgithub&response_type=code&scope=&state")
+=======
+      expect(response).to redirect_to('https://github.com/login/oauth/authorize?client_id=cd5cce5cecb001da9a3c&display&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Foauth%2Fcallback%3Fprovider%3Dgithub&response_type=code&scope=&state')
+>>>>>>> e753d0fa666cfee9a0454e77ce628c864f2f5eb8
     end
   end
 

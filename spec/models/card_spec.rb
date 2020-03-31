@@ -11,12 +11,18 @@ RSpec.describe Card, type: :model do
     end
   end
 
+  describe 'validation of images' do
+    it { should have_attached_file(:image) }
+    it { should validate_attachment_content_type(:image).allowing('image/jpg', 'image/jpeg', 'image/png', 'image/gif') }
+    it { should validate_attachment_size(:image).less_than(2.megabytes) }
+  end
+
   describe 'scope test' do
     before do
-      create(:user) do |user|
-        user.cards.create(attributes_for(:card))
-        user.cards.create(attributes_for(:card, updated_at: 4.days.ago))
-        user.cards.create(attributes_for(:card, updated_at: 4.days.ago))
+      create(:deck) do |deck|
+        deck.cards.create(attributes_for(:card))
+        deck.cards.create(attributes_for(:card, updated_at: 4.days.ago))
+        deck.cards.create(attributes_for(:card, updated_at: 4.days.ago))
       end
     end
 

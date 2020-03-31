@@ -1,65 +1,70 @@
 # frozen_string_literal: true
 
 class CardsController < ApplicationController
-  before_action :set_card, except: %i[index new create]
-  before_action :require_login
+  before_action :get_deck, except: %i[trainer]
+  before_action :set_card, except: %i[index new create trainer]
 
   def index
-    @cards = current_user.cards.all
+    @cards = @deck.cards
   end
 
   def show; end
 
   def new
-    @card = current_user.cards.new
+    @card = @deck.cards.new
   end
 
   def edit; end
 
   def create
-    @card = current_user.cards.new(card_params)
+    @card = @deck.cards.new(card_params)
 
     if @card.save
-      flash[:success] = 'The card has created successfully'
-      redirect_to cards_path
+      flash[:success] = I18n.t 'cards.success.create'
+      redirect_to deck_cards_path
     else
-      flash.now[:error] = 'Could not save the card'
+      flash.now[:error] = I18n.t 'cards.error.create'
       render 'new'
     end
   end
 
   def update
     if @card.update(card_params)
-      flash[:success] = 'The card has updated successfully'
-      redirect_to @card
+      flash[:success] = I18n.t 'cards.success.update'
+      redirect_to @deck
     else
-      flash.now[:error] = 'Could not update the card'
+      flash.now[:error] = I18n.t 'cards.error.update'
       render 'edit'
     end
   end
 
   def destroy
     @card.destroy
-    flash[:success] = 'The card was removed successfully'
-    redirect_to cards_path
+    flash[:success] = I18n.t 'cards.success.destroy'
+    redirect_to decks_path
   end
 
   def trainer
-    if @card[:translated_text] == params[:other][:user_answer]
+    @card = RandomCard.new.today_card(current_user)
+    if @card[:translated_text].downcase == params[:other][:user_answer].downcase
       @card.touch
-      flash.now[:success] = 'Awesome!'
+      flash.now[:success] = I18n.t 'trainer.success'
     else
-      flash.now[:error] = 'Try again!'
+      flash.now[:error] = I18n.t 'trainer.error'
     end
   end
 
   private
 
   def set_card
-    @card = Card.find(params[:id])
+    @card = @deck.cards.find(params[:id])
+  end
+
+  def get_deck
+    @deck = Deck.find(params[:deck_id])
   end
 
   def card_params
-    params.require(:card).permit(:original_text, :translated_text)
+    params.require(:card).permit(:original_text, :translated_text, :image)
   end
 end

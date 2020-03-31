@@ -4,70 +4,73 @@ require 'rails_helper'
 
 RSpec.feature 'Cards', type: :feature do
   describe 'create new card' do
-    let!(:user) { FactoryBot.create :user }
+    let!(:deck) { create(:deck) }
     before do
-      login_scenario
-      visit new_card_path
+      visit new_deck_card_path(deck)
       find('input#card_original_text').set('foo')
     end
     scenario 'successfully creates card' do
       find('input#card_translated_text').set('bar')
+      attach_file('card_image', "#{Rails.root}/spec/support/test.jpg")
       click_button 'Create Card'
-      expect(page).to have_content('The card has created successfully')
+      expect(page).to have_content(I18n.t('cards.success.create'))
     end
 
     scenario 'fail to create card' do
       click_button 'Create Card'
-      expect(page).to have_content('Could not save the card')
+      expect(page).to have_content(I18n.t('cards.error.create'))
     end
   end
 
   describe 'update card' do
-    let!(:card) { FactoryBot.create :card }
+    let!(:deck) { create :deck }
+    let(:card) { create(:card, deck: deck) }
     before do
       login_scenario
-      visit edit_card_path(card)
+      visit edit_deck_card_path(deck, card)
     end
     scenario 'successfuly update card' do
       find('input#card_original_text').set('foo')
+      attach_file('card_image', "#{Rails.root}/spec/support/test.jpg")
       click_button 'Update Card'
-      expect(page).to have_content('The card has updated successfully')
+      expect(page).to have_content(I18n.t('cards.success.update'))
     end
 
     scenario 'fail to update card' do
       find('input#card_original_text').set('')
       click_button 'Update Card'
-      expect(page).to have_content('Could not update the card')
+      expect(page).to have_content(I18n.t('cards.error.update'))
     end
   end
 
   describe 'destroy card' do
-    let!(:card) { FactoryBot.create :card }
+    let!(:deck) { create :deck }
+    let!(:card) { create :card, deck: deck }
     before do
       login_scenario
-      visit cards_path
+      visit deck_path(deck)
     end
     scenario 'successfuly destroy card' do
-      click_button 'Destroy', match: :first
-      expect(page).to have_content('The card was removed successfully')
+      expect { click_button 'Destroy' }.to change(Card, :count).by(-1)
     end
   end
 
   describe 'trainer card' do
-    let!(:card) { create(:card, updated_at: 10.days.ago) }
+    let!(:deck) { create :deck }
+    let(:card) { create(:card, updated_at: 10.days.ago, deck: deck) }
     before do
       login_scenario
-      visit cards_path
+      visit decks_path(deck, card)
     end
     scenario 'successfully trains card' do
       find('input#other_user_answer').set('Hola')
       click_button 'Check'
-      expect(page).to have_content('Awesome!')
+      expect(page).to have_content(I18n.t('trainer.success'))
     end
     scenario 'fail to train card' do
       find('input#other_user_answer').set('foo')
       click_button 'Check'
-      expect(page).to have_content('Try again!')
+      expect(page).to have_content(I18n.t('trainer.error'))
     end
   end
 
