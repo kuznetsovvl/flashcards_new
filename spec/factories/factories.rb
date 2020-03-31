@@ -15,6 +15,10 @@ FactoryBot.define do
     end
   end
 
+  factory :image do
+    image { File.new("#{Rails.root}/spec/support/test.jpg") }
+  end
+
   trait :authenticated_through_github do
     after(:create) do |user|
       create(:authentication, :github, user: user)
@@ -22,9 +26,14 @@ FactoryBot.define do
   end
 
   factory :card do
-    user
+    deck
     original_text { 'Hello' }
     translated_text { 'Hola' }
     updated_at { Time.now }
+  end
+
+  factory :deck do
+    user
+    name { Faker::Name.name }
   end
 end

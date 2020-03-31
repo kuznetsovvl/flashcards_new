@@ -1,5 +1,6 @@
-  <%= t('name') %> <%= @card.original_text %> <br>
-  <%= t('description') %><%= @card.translated_text %> <br>
-  <%= t('updating_date') %><%= @card.updated_at.strftime("%Y-%b-%d") %> <br>
-  <%= link_to 'Edit', edit_card_path(@card) %> <br>
-  <%= link_to 'Back', cards_path %>
+  <%= image_tag @card.image.url %> <br>
+  <%= t('cards.name') %> <%= @card.original_text %> <br>
+  <%= t('cards.description') %><%= @card.translated_text %> <br>
+  <%= t('cards.updating_date') %><%= @card.updated_at.strftime("%Y-%b-%d") %> <br>
+  <%= link_to t('link.edit'), edit_deck_card_path(@deck, @card) %> <br>
+  <%= link_to t('link.back'), deck_cards_path %>

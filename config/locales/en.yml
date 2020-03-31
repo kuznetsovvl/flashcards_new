@@ -30,20 +30,65 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  name: "Cards: "
-  description: "Translate: "
-  updating_date: "Last checking: "
-  header: "Flashcarder"
-  header_subtitle: "The first manager of flash-cards. Exactly."
-  add_card_link: "Add a card"
-  all_card_link: "All cards"
-  should_login: "You must be logged in to access this section"
-  invalid_login: "Email or password was invalid"
-  enter_login: "Logged in!"
-  exit_login: "Logged out"
-  title_login: 'Log in'
-  title_sign_up: 'Sign up!'
-  title_error_message: 'Form is invalid'
-  title_login_external: 'Logged in from'
-  title_failed_login_external: 'Failed to login from'
-  login_github: 'Login with Github'
+  main_page:
+    header: "Flashcarder"
+    add_deck_link: "Add a deck"
+    all_deck_link: "All decks"
+    header_subtitle: "The first manager of flash-cards. Exactly."
+  reg_users:
+    login: "Logged in!"
+    logout: "Logged out"
+    sign_up: 'Sign up!'
+    edit: 'Editing users'
+    invalid_login: "Email or password was invalid"
+    should_login: "You must be logged in to access this section"
+    login_github: "Login with Github"
+    login_external: "Login with %{provider}"
+    failed_login_external: "Failed to login from %{provider}"
+    success:
+      update: 'The user has updated successfully'   
+    error:
+      update: 'Could not update the user'
+  button:
+    logout: 'Log out'
+    login: 'Log in'
+    sign_up: 'Sign up!'
+    update_user: "Update user info"
+    check: 'Check'
+  link:
+    back: 'Back'
+    edit: 'Edit'
+    show: 'Show'
+    destroy: 'Destroy'
+  form:
+    login: 'Log in'
+    error_message: 'Form is invalid'
+  deck:
+    name: 'Deck: '
+    new: 'New deck'
+    edit: 'Editing Deck'
+    success:
+      create: 'The deck has created successfully' 
+      destroy: 'The deck was removed successfully'
+      update: 'The deck has updated successfully'
+    error:
+      create: 'Could not save the deck'
+      update: 'Could not update the deck'
+  cards:
+    name: "Cards: "
+    description: "Translate: "
+    updating_date: "Last checking: "
+    create_new_card: 'Create new card'
+    new: 'New card'
+    edit: 'Editing cards'
+    success:
+      create: 'The card has created successfully'
+      update: 'The card has updated successfully'   
+      destroy: 'The card was removed successfully'
+    error:
+      update: 'Could not update the card'
+      create: 'Could not save the card'
+  trainer:
+    success: 'Awesome!'
+    error: 'Try again!'
+  error: 'error'

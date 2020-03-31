@@ -1,17 +1,8 @@
 
-<h1><%= t('title_sign_up') %></h1>
+<h1><%= t('form.sign_up') %></h1>
 
 <%= form_for @user do |f| %>
-  <% if @user.errors.any? %>
-    <div class="error_messages">
-      <h2><%= t('title_error_message') %></h2>
-      <ul>
-        <% for message in @user.errors.full_messages %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= render "shared/validation", item: @user %>
   <p>
     <%= f.label :email %><br />
     <%= f.text_field :email %>

@@ -1,14 +1,11 @@
 .header-title {
   text-align: center;
-  margin: 50px 0px; }
+  margin-bottom: 100px; }
 
 .header-subtitle {
   font-size: 20px;
   margin-top: 50px;
   text-align: center; }
-
-.navbar {
-  margin-top: 100px; }
 
 .navbar-link {
   margin-right: 50px;

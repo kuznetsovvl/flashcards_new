@@ -1,19 +1,19 @@
 <div class="header">
-  <h1 class ="header-title"><%= t('header') %></h1>
+  <h1 class ="header-title"><%= t('main_page.header') %></h1>
   <nav class="navbar">
     <span class="navbar-link">
       <p class="navbar-link-text"><i class="fas fa-border-all"></i></p>
-        <%= link_to t('all_card_link'), cards_path %>
+        <%= link_to t('main_page.all_deck_link'), decks_path %>
     </span>
-    <% if today_card.nil? %>
+    <% if random_card.nil? %>
       <%= render 'shared/info_form' %>
     <% else %>
       <%= render 'shared/trainer_form' %>
     <% end %>
     <span class="navbar-link">
       <p class="navbar-link-text"><i class="fas fa-plus"></i></p>
-        <%= link_to t('add_card_link'), new_card_path %>
+        <%= link_to t('main_page.add_deck_link'), new_deck_path %>
     </span>
 	</nav>
-  <p class="header-subtitle"><%= t('header_subtitle') %></p>
+  <p class="header-subtitle"><%= t('main_page.header_subtitle') %></p>
 </div>
