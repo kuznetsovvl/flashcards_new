@@ -10,7 +10,7 @@ gem 'fabrication'
 gem 'jbuilder', '~> 2.7'
 gem 'nokogiri'
 gem 'paperclip'
-gem 'pg', '~> 0.21'
+gem 'pg'
 gem 'pry'
 gem 'puma', '~> 3.11'
 gem 'rails', '~> 6.0.0'
@@ -53,5 +53,6 @@ group :test do
   gem 'webdrivers'
   gem 'webmock'
 end
+
 
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
