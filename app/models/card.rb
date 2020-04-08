@@ -3,7 +3,13 @@
 class Card < ApplicationRecord
   belongs_to :deck
 
-  scope :days_ago, -> { where('DATE(updated_at) <= ?', 3.days.ago.to_date) }
+  scope :start_check, -> { where('status = 0') }
+  scope :first_check, -> { where('status = 1 AND updated_at <= ?', 12.hours.ago) }
+  scope :second_check, -> { where('status = 2 AND DATE(updated_at) <= ?', 3.days.ago.to_date) }
+  scope :third_check, -> { where('status = 3 AND DATE(updated_at) <= ?', 7.days.ago.to_date) }
+  scope :fourth_check, -> { where('status = 4 AND DATE(updated_at) <= ?', 2.weeks.ago.to_date) }
+  scope :fifth_check, -> { where('status = 5 AND DATE(updated_at) <= ?', 1.month.ago.to_date) }
+
   validates :original_text, presence: true
   validates :translated_text, presence: true
   validate :compare

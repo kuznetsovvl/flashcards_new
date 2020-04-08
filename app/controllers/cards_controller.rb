@@ -47,10 +47,22 @@ class CardsController < ApplicationController
   def trainer
     @card = RandomCard.new.today_card(current_user)
     if @card[:translated_text].downcase == params[:other][:user_answer].downcase
-      @card.touch
+      @card.status += 1
+      @card.mistake_counter = 0
+      @card.save
       flash.now[:success] = I18n.t 'trainer.success'
     else
-      flash.now[:error] = I18n.t 'trainer.error'
+      @card.mistake_counter += 1
+      if @card.mistake_counter == 3
+        @card.status = 0
+        @card.mistake_counter = 0
+        @card.save
+        flash.now[:error] = I18n.t 'trainer.forgotten_word'
+      else
+        @card.save(touch: false)
+        flash.now[:info] = I18n.t 'trainer.error'
+        flash.now[:error] = I18n.t 'trainer.count', deep_interpolation: true, mistakes: @card.mistake_counter
+      end
     end
   end
 
@@ -65,6 +77,6 @@ class CardsController < ApplicationController
   end
 
   def card_params
-    params.require(:card).permit(:original_text, :translated_text, :updated_at, :image)
+    params.require(:card).permit(:original_text, :translated_text, :updated_at, :status, :mistake_counter, :image)
   end
 end

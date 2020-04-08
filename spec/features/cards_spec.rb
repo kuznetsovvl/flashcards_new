@@ -55,22 +55,104 @@ RSpec.feature 'Cards', type: :feature do
     end
   end
 
-  describe 'trainer card' do
+  describe 'trainer card is esteblished immediately' do
     let!(:deck) { create :deck }
-    let(:card) { create(:card, updated_at: 10.days.ago, deck: deck) }
+    let(:card) { create(:card, deck: deck) }
     before do
       login_scenario
       visit decks_path(deck, card)
     end
-    scenario 'successfully trains card' do
+    scenario 'successfully' do
       find('input#other_user_answer').set('Hola')
-      click_button 'Check'
-      expect(page).to have_content(I18n.t('trainer.success'))
+      expect { click_button 'Check' }.to change(Card.start_check, :count).by(-1)
     end
     scenario 'fail to train card' do
       find('input#other_user_answer').set('foo')
       click_button 'Check'
       expect(page).to have_content(I18n.t('trainer.error'))
+    end
+  end
+
+  describe 'trainer card after 12 hours' do
+    let!(:deck) { create :deck }
+    let(:card) { create(:card, deck: deck, updated_at: 13.hours.ago, status: 1) }
+    before do
+      login_scenario
+      visit decks_path(deck, card)
+    end
+    scenario 'successfully' do
+      find('input#other_user_answer').set('Hola')
+      expect { click_button 'Check' }.to change(Card.first_check, :count).by(-1)
+    end
+  end
+
+  describe 'trainer card after 3 days' do
+    let!(:deck) { create :deck }
+    let(:card) { create(:card, deck: deck, updated_at: 4.days.ago, status: 2) }
+    before do
+      login_scenario
+      visit decks_path(deck, card)
+    end
+    scenario 'successfully' do
+      find('input#other_user_answer').set('Hola')
+      expect { click_button 'Check' }.to change(Card.second_check, :count).by(-1)
+    end
+  end
+
+  describe 'trainer card after 7 days' do
+    let!(:deck) { create :deck }
+    let(:card) { create(:card, deck: deck, updated_at: 8.days.ago, status: 3) }
+    before do
+      login_scenario
+      visit decks_path(deck, card)
+    end
+    scenario 'successfully' do
+      find('input#other_user_answer').set('Hola')
+      expect { click_button 'Check' }.to change(Card.third_check, :count).by(-1)
+    end
+  end
+
+  describe 'trainer card after 2 weeks' do
+    let!(:deck) { create :deck }
+    let(:card) { create(:card, deck: deck, updated_at: 3.weeks.ago, status: 4) }
+    before do
+      login_scenario
+      visit decks_path(deck, card)
+    end
+    scenario 'successfully' do
+      find('input#other_user_answer').set('Hola')
+      expect { click_button 'Check' }.to change(Card.fourth_check, :count).by(-1)
+    end
+  end
+
+  describe 'trainer card after 1 month' do
+    let!(:deck) { create :deck }
+    let(:card) { create(:card, deck: deck, updated_at: 2.month.ago, status: 5) }
+    before do
+      login_scenario
+      visit decks_path(deck, card)
+    end
+    scenario 'successfully' do
+      find('input#other_user_answer').set('Hola')
+      expect { click_button 'Check' }.to change(Card.fifth_check, :count).by(-1)
+    end
+  end
+
+  describe 'trainer card' do
+    let!(:deck) { create :deck }
+    let(:card) { create(:card, deck: deck, updated_at: 2.month.ago, status: 5) }
+    before do
+      login_scenario
+      visit decks_path(deck, card)
+    end
+    scenario 'train card roll back' do
+      find('input#other_user_answer').set('Error')
+      click_button 'Check'
+      find('input#other_user_answer').set('Error')
+      click_button 'Check'
+      find('input#other_user_answer').set('Error')
+      expect { click_button 'Check' }.to change(Card.start_check, :count).by(1)
+      expect(page).to have_content(I18n.t('trainer.forgotten_word'))
     end
   end
 

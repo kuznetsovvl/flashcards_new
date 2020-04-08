@@ -91,4 +91,6 @@ en:
   trainer:
     success: 'Awesome!'
     error: 'Try again!'
+    count: "You've made: %{mistakes} mistakes"
+    forgotten_word: "You forget this word :("
   error: 'error'
