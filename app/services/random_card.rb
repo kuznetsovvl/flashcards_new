@@ -8,17 +8,28 @@ class RandomCard
              4 => proc { 2.weeks.ago.to_date },
              5 => proc { 1.month.ago.to_date } }.freeze
 
-  def check(number)
-    Card.where(deck_id: @current_decks&.id).where('updated_at <= ?', CHECKS[number].call).where('status = ?', number).last
-  end
-
   def today_card(user)
     @current_decks = Deck.where(user_id: user.id).last
-    @show = []
-    @array = [0, 1, 2, 3, 4, 5]
 
-    @new_array = @array.map { |e| e = check(e) }
-    @new_array.map { |e| !e.nil? ? @show << e : false }
-    @show.last
+    @new_array = (0..5).map { |e| e = check(e) }
+    @new_array.compact.last
+  end
+
+  def trainer_correct_answer(card)
+    card.status += 1
+    card.mistake_counter = 0
+    card.save!
+  end
+
+  def trainer_wrong_answer(card)
+    card.status = 0
+    card.mistake_counter = 0
+    card.save!
+  end
+
+  private
+
+  def check(number)
+    Card.where(deck_id: @current_decks&.id).where('updated_at <= ?', CHECKS[number].call).where('status = ?', number).last
   end
 end
