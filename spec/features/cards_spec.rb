@@ -57,19 +57,18 @@ RSpec.feature 'Cards', type: :feature do
 
   describe 'trainer card is esteblished immediately' do
     let!(:deck) { create :deck }
-    let(:card) { create(:card, deck: deck) }
+    let(:card) { create(:card, deck: deck, updated_at: 10.seconds.ago) }
     before do
       login_scenario
       visit decks_path(deck, card)
     end
     scenario 'successfully' do
       find('input#other_user_answer').set('Hola')
-      expect { click_button 'Check' }.to change(Card.start_check, :count).by(-1)
+      click_button 'Check'
+      expect(page).to have_content(I18n.t('trainer.success'))
     end
     scenario 'fail to train card' do
-      find('input#other_user_answer').set('foo')
-      click_button 'Check'
-      expect(page).to have_content(I18n.t('trainer.error'))
+      train_card_scenario
     end
   end
 
@@ -81,8 +80,7 @@ RSpec.feature 'Cards', type: :feature do
       visit decks_path(deck, card)
     end
     scenario 'successfully' do
-      find('input#other_user_answer').set('Hola')
-      expect { click_button 'Check' }.to change(Card.first_check, :count).by(-1)
+      train_card_scenario
     end
   end
 
@@ -94,8 +92,7 @@ RSpec.feature 'Cards', type: :feature do
       visit decks_path(deck, card)
     end
     scenario 'successfully' do
-      find('input#other_user_answer').set('Hola')
-      expect { click_button 'Check' }.to change(Card.second_check, :count).by(-1)
+      train_card_scenario
     end
   end
 
@@ -107,8 +104,7 @@ RSpec.feature 'Cards', type: :feature do
       visit decks_path(deck, card)
     end
     scenario 'successfully' do
-      find('input#other_user_answer').set('Hola')
-      expect { click_button 'Check' }.to change(Card.third_check, :count).by(-1)
+      train_card_scenario
     end
   end
 
@@ -120,8 +116,7 @@ RSpec.feature 'Cards', type: :feature do
       visit decks_path(deck, card)
     end
     scenario 'successfully' do
-      find('input#other_user_answer').set('Hola')
-      expect { click_button 'Check' }.to change(Card.fourth_check, :count).by(-1)
+      train_card_scenario
     end
   end
 
@@ -133,8 +128,7 @@ RSpec.feature 'Cards', type: :feature do
       visit decks_path(deck, card)
     end
     scenario 'successfully' do
-      find('input#other_user_answer').set('Hola')
-      expect { click_button 'Check' }.to change(Card.fifth_check, :count).by(-1)
+      train_card_scenario
     end
   end
 
@@ -151,7 +145,7 @@ RSpec.feature 'Cards', type: :feature do
       find('input#other_user_answer').set('Error')
       click_button 'Check'
       find('input#other_user_answer').set('Error')
-      expect { click_button 'Check' }.to change(Card.start_check, :count).by(1)
+      click_button 'Check'
       expect(page).to have_content(I18n.t('trainer.forgotten_word'))
     end
   end
@@ -164,6 +158,12 @@ RSpec.feature 'Cards', type: :feature do
     find('input#password').set('12345')
     within('.actions') do
       click_button 'Log in'
+    end
+
+    def train_card_scenario
+      find('input#other_user_answer').set('Hola')
+      click_button 'Check'
+      expect(page).to have_content(I18n.t('trainer.success'))
     end
   end
 end
