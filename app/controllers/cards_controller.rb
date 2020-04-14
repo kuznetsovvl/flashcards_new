@@ -4,8 +4,6 @@ class CardsController < ApplicationController
   before_action :get_deck, except: %i[trainer]
   before_action :set_card, except: %i[index new create trainer]
 
-  MAX_MISTAKE = 3
-
   def index
     @cards = @deck.cards
   end
@@ -48,18 +46,15 @@ class CardsController < ApplicationController
 
   def trainer
     @card = RandomCard.new.today_card(current_user)
-    if @card[:translated_text].downcase == params[:other][:user_answer].downcase
-      RandomCard.new.trainer_correct_answer(@card)
+    if RandomCard.new.trainer_correct_answer(@card, params[:other][:user_answer])
       flash.now[:success] = I18n.t 'trainer.success'
-    else @card.mistake_counter += 1
-         if @card.mistake_counter == 3
-           RandomCard.new.trainer_wrong_answer(@card)
-           flash.now[:error] = I18n.t 'trainer.forgotten_word'
-         else
-           @card.save!(touch: false)
+    else
+      if RandomCard.new.trainer_wrong_answer(@card)
+        flash.now[:error] = I18n.t 'trainer.forgotten_word'
+      else RandomCard.new.trainer_save(@card)
            flash.now[:info] = I18n.t 'trainer.error'
            flash.now[:error] = I18n.t 'trainer.count', deep_interpolation: true, mistakes: @card.mistake_counter
-         end
+      end
     end
   end
 
