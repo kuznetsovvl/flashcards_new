@@ -2,10 +2,6 @@
 
 module ApplicationHelper
   def random_card
-    if current_user
-      RandomCard.new.today_card(current_user)
-    else
-      Card.days_ago.last
-    end
+    RandomCard.new.today_card(current_user) if current_user
   end
 end

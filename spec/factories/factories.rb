@@ -30,6 +30,8 @@ FactoryBot.define do
     original_text { 'Hello' }
     translated_text { 'Hola' }
     updated_at { Time.now }
+    status { '0' }
+    mistake_counter { '0' }
   end
 
   factory :deck do
