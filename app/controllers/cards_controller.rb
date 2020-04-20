@@ -55,8 +55,8 @@ class CardsController < ApplicationController
       if RandomCard.new.trainer_wrong_answer(@card)
         flash.now[:error] = I18n.t 'trainer.forgotten_word'
       else RandomCard.new.trainer_save(@card)
-           flash.now[:info] = I18n.t 'trainer.error'
-           flash.now[:error] = I18n.t 'trainer.count', deep_interpolation: true, mistakes: @card.mistake_counter
+        flash.now[:info] = I18n.t 'trainer.error'
+        flash.now[:error] = I18n.t 'trainer.count', deep_interpolation: true, mistakes: @card.mistake_counter
       end
     end
   end
