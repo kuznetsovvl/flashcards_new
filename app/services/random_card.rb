@@ -60,4 +60,3 @@ class RandomCard
     Card.where(deck_id: @current_decks&.id).where('updated_at <= ?', CHECKS[number].call).where('status = ?', number).last
   end
 end
-
