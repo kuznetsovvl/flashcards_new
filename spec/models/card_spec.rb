@@ -16,18 +16,4 @@ RSpec.describe Card, type: :model do
     it { should validate_attachment_content_type(:image).allowing('image/jpg', 'image/jpeg', 'image/png', 'image/gif') }
     it { should validate_attachment_size(:image).less_than(2.megabytes) }
   end
-
-  describe 'scope test' do
-    before do
-      create(:deck) do |deck|
-        deck.cards.create(attributes_for(:card))
-        deck.cards.create(attributes_for(:card, updated_at: 4.days.ago))
-        deck.cards.create(attributes_for(:card, updated_at: 4.days.ago))
-      end
-    end
-
-    it 'return cards some days ago' do
-      expect(Card.days_ago.size).to eq(2)
-    end
-  end
 end
