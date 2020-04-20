@@ -6,6 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.6.3'
 gem 'aws-sdk-s3'
 gem 'bootsnap', '>= 1.4.2', require: false
+gem 'damerau-levenshtein'
 gem 'fabrication'
 gem 'jbuilder', '~> 2.7'
 gem 'nokogiri'
@@ -55,4 +56,3 @@ group :test do
 end
 
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-
