@@ -38,9 +38,7 @@ ActiveRecord::Schema.define(version: 20_200_413_120_954) do
     t.bigint 'deck_id'
     t.integer 'status', default: 0
     t.integer 'mistake_counter', default: 0
-    t.bigint 'user_id'
     t.index ['deck_id'], name: 'index_cards_on_deck_id'
-    t.index ['user_id'], name: 'index_cards_on_user_id'
   end
 
   create_table 'decks', force: :cascade do |t|
@@ -61,6 +59,5 @@ ActiveRecord::Schema.define(version: 20_200_413_120_954) do
   end
 
   add_foreign_key 'cards', 'decks'
-  add_foreign_key 'cards', 'users'
   add_foreign_key 'decks', 'users'
 end
