@@ -369,7 +369,7 @@ DEPENDENCIES
   byebug
   capybara (>= 2.15)
   capybara-screenshot
-  damerau-levenshtein
+  damerau-levenshtein (~> 1.1)
   database_cleaner (= 1.0.0.RC1)
   fabrication
   factory_bot_rails
