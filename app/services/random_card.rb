@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'damerau-levenshtein'
+
 class RandomCard
   CHECKS = { 0 => proc { 2.seconds.ago },
              1 => proc { 12.hours.ago },
@@ -9,6 +11,7 @@ class RandomCard
              5 => proc { 1.month.ago.to_date } }.freeze
 
   MAX_MISTAKE = 3
+  LEVENSHTEIN_DISTANCE = 3
 
   def today_card(user)
     @current_decks = Deck.where(user_id: user.id).last
@@ -17,10 +20,18 @@ class RandomCard
   end
 
   def trainer_correct_answer(card, params)
-    if card[:translated_text].downcase == params.downcase
-      card.status += 1
-      card.mistake_counter = 0
-      card.save!
+    @dl = DamerauLevenshtein
+    @card = card
+    if @dl.distance(card[:translated_text].downcase, params.downcase) == 0
+      trainer_correct_saver
+    end
+  end
+
+  def trainer_correct_with_mistake(card, params)
+    @dl = DamerauLevenshtein
+    @card = card
+    if @dl.distance(card[:translated_text].downcase, params.downcase) < LEVENSHTEIN_DISTANCE
+      trainer_correct_saver
     end
   end
 
@@ -35,6 +46,12 @@ class RandomCard
 
   def trainer_save(card)
     card.save!(touch: false)
+  end
+
+  def trainer_correct_saver
+    @card.status += 1
+    @card.mistake_counter = 0
+    @card.save!
   end
 
   private

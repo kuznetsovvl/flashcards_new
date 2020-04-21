@@ -132,6 +132,20 @@ RSpec.feature 'Cards', type: :feature do
     end
   end
 
+  describe 'trainer card with mistakes' do
+    let!(:deck) { create :deck }
+    let(:card) { create(:card, deck: deck, updated_at: 10.seconds.ago) }
+    before do
+      login_scenario
+      visit decks_path(deck, card)
+    end
+    scenario 'successfully' do
+      find('input#other_user_answer').set('Hloa')
+      click_button 'Check'
+      expect(page).to have_content(I18n.t('trainer.success'))
+    end
+  end
+
   describe 'trainer card' do
     let!(:deck) { create :deck }
     let(:card) { create(:card, deck: deck, updated_at: 2.month.ago, status: 5) }

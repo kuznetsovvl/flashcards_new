@@ -48,12 +48,15 @@ class CardsController < ApplicationController
     @card = RandomCard.new.today_card(current_user)
     if RandomCard.new.trainer_correct_answer(@card, params[:other][:user_answer])
       flash.now[:success] = I18n.t 'trainer.success'
+    elsif RandomCard.new.trainer_correct_with_mistake(@card, params[:other][:user_answer])
+      flash.now[:info] = I18n.t 'trainer.success_with_mistake', deep_interpolation: true, translated_text: @card.translated_text, user_answer: params[:other][:user_answer]
+      flash.now[:success] = I18n.t 'trainer.success'
     else
       if RandomCard.new.trainer_wrong_answer(@card)
         flash.now[:error] = I18n.t 'trainer.forgotten_word'
       else RandomCard.new.trainer_save(@card)
-        flash.now[:info] = I18n.t 'trainer.error'
-        flash.now[:error] = I18n.t 'trainer.count', deep_interpolation: true, mistakes: @card.mistake_counter
+           flash.now[:info] = I18n.t 'trainer.error'
+           flash.now[:error] = I18n.t 'trainer.count', deep_interpolation: true, mistakes: @card.mistake_counter
       end
     end
   end
