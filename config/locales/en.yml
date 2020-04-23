@@ -90,8 +90,7 @@ en:
       create: 'Could not save the card'
   trainer:
     success: 'Awesome!'
-    success_with_mistake: "The right answer is: %{translated_text} but you typed %{user_answer}"
+    success_with_mistake: "Awesome! The right answer is: %{translated_text} but you typed %{user_answer}"
     error: 'Try again!'
     count: "You've made: %{mistakes} mistakes"
-    forgotten_word: "You've forgotten this word :("
   error: 'error'

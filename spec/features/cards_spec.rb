@@ -142,7 +142,7 @@ RSpec.feature 'Cards', type: :feature do
     scenario 'successfully' do
       find('input#other_user_answer').set('Hloa')
       click_button 'Check'
-      expect(page).to have_content(I18n.t('trainer.success'))
+      expect(page).to have_content('The right answer is: Hola but you typed Hloa')
     end
   end
 
@@ -160,7 +160,7 @@ RSpec.feature 'Cards', type: :feature do
       click_button 'Check'
       find('input#other_user_answer').set('Error')
       click_button 'Check'
-      expect(page).to have_content(I18n.t('trainer.forgotten_word'))
+      expect(page).to have_content("You've made: 0 mistakes")
     end
   end
 
