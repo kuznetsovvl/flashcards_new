@@ -46,7 +46,7 @@ class CardsController < ApplicationController
 
   def trainer
     @card = RandomCard.new.today_card(current_user)
-    @result = CheckCardAnswer.new(current_user, params[:other][:user_answer], @card)
+    @result = CheckCardAnswer.new(params[:other][:user_answer], @card)
     flash.now[:success] = I18n.t 'trainer.success' if @result.success?
     flash.now[:info] = flash_info if @result.info?
     if @result.error?
