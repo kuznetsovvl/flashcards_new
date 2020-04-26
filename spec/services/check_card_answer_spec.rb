@@ -4,35 +4,23 @@ require 'rails_helper'
 
 describe CheckCardAnswer do
   let(:card) { create(:card) }
-
-  describe '.success?' do
-    it 'return true' do
-      result = CheckCardAnswer.new('Hola', card)
+  subject(:result) { described_class.new(input, card) }
+  context 'with correct answer' do
+    let(:input) { 'Hola' }
+    it do
       expect(result.success?).to be_truthy
     end
-    it 'return false' do
-      result = CheckCardAnswer.new('Hloa', card)
-      expect(result.success?).to be_falsey
-    end
   end
-  describe '.info?' do
-    it 'return true' do
-      result = CheckCardAnswer.new('Hloa', card)
+  context 'with correct answer with mistakes' do
+    let(:input) { 'Hloa' }
+    it do
       expect(result.info?).to be_truthy
     end
-    it 'return false' do
-      result = CheckCardAnswer.new('Hola', card)
-      expect(result.info?).to be_falsey
-    end
   end
-  describe '.error?' do
-    it 'return true' do
-      result = CheckCardAnswer.new('Error', card)
+  context 'with uncorrect answer' do
+    let(:input) { 'Error' }
+    it do
       expect(result.error?).to be_truthy
-    end
-    it 'return false' do
-      result = CheckCardAnswer.new('Hola', card)
-      expect(result.info?).to be_falsey
     end
   end
 end
