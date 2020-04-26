@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'damerau-levenshtein'
+
 class RandomCard
   CHECKS = { 0 => proc { 2.seconds.ago },
              1 => proc { 12.hours.ago },
