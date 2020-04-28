@@ -46,19 +46,20 @@ class CardsController < ApplicationController
 
   def trainer
     @card = RandomCard.new.today_card(current_user)
-    if RandomCard.new.trainer_correct_answer(@card, params[:other][:user_answer])
-      flash.now[:success] = I18n.t 'trainer.success'
-    else
-      if RandomCard.new.trainer_wrong_answer(@card)
-        flash.now[:error] = I18n.t 'trainer.forgotten_word'
-      else RandomCard.new.trainer_save(@card)
-        flash.now[:info] = I18n.t 'trainer.error'
-        flash.now[:error] = I18n.t 'trainer.count', deep_interpolation: true, mistakes: @card.mistake_counter
-      end
+    @result = CheckCardAnswer.new(params[:other][:user_answer], @card)
+    flash.now[:success] = I18n.t 'trainer.success' if @result.success?
+    flash.now[:info] = flash_info if @result.info?
+    if @result.error?
+      flash.now[:error] = I18n.t 'trainer.error'
+      flash.now[:info] = I18n.t 'trainer.count', deep_interpolation: true, mistakes: @card.mistake_counter
     end
   end
 
   private
+
+  def flash_info
+    I18n.t 'trainer.success_with_mistake', deep_interpolation: true, translated_text: @card.translated_text, user_answer: params[:other][:user_answer]
+  end
 
   def set_card
     @card = @deck.cards.find(params[:id])
