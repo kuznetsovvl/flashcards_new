@@ -10,8 +10,14 @@ class User < ApplicationRecord
   has_many :authentications, dependent: :destroy
   accepts_nested_attributes_for :authentications
 
-  has_many :decks
+  has_many :decks, dependent: :destroy
 
   validates :password, confirmation: true, presence: true
   validates :email, presence: true, uniqueness: true
+
+  def self.notify_review
+    ReviewCards.new.find_user_for_review.each do |user|
+      NotificationsMailer.pending_cards(user).deliver_now
+    end
+  end
 end

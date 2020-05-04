@@ -10,8 +10,8 @@ class RandomCard
 
   def today_card(user)
     @current_decks = Deck.where(user_id: user.id).last
-    @new_array = (0..5).map { |e| e = check(e) }
-    @new_array.compact.last
+    @review_cards = (0..5).map { |e| e = check(e) }
+    @review_cards.compact.last
   end
 
   private

@@ -49,6 +49,10 @@ en:
       update: 'The user has updated successfully'   
     error:
       update: 'Could not update the user'
+  mailer:
+    pending_cards:
+      subject: 'You have card for review!'
+      default: 'flashcards@gmail.com'
   button:
     logout: 'Log out'
     login: 'Log in'
