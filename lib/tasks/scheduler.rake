@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-task pending_cards: :environment do
+task send_review_cards: :environment do
   puts 'Sending messages...'
-  User.notify_review
+  NotifyReviewCards.notify_review
   puts 'done.'
 end

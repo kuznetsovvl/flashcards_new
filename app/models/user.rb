@@ -14,10 +14,4 @@ class User < ApplicationRecord
 
   validates :password, confirmation: true, presence: true
   validates :email, presence: true, uniqueness: true
-
-  def self.notify_review
-    ReviewCards.new.find_user_for_review.each do |user|
-      NotificationsMailer.pending_cards(user).deliver_now
-    end
-  end
 end

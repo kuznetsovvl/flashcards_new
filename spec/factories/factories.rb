@@ -32,6 +32,10 @@ FactoryBot.define do
     updated_at { Time.now }
     status { '0' }
     mistake_counter { '0' }
+
+    trait :card_review do
+      updated_at { 10.seconds.ago }
+    end
   end
 
   factory :deck do

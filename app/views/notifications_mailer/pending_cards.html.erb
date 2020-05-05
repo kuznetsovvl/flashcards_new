@@ -1,2 +1,2 @@
-<h1>Hello, <%= @user.email %> </h1>
-<p>You have cards for review! Let's check it.</p>
+<h1> <%= t('mailer.pending_cards.greeting') %> <%= @user.email %> </h1>
+<p> <%= t('mailer.pending_cards.body') %> </p>

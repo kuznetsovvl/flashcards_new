@@ -8,7 +8,7 @@ class ReviewCards < RandomCard
   private
 
   def find_deck_for_review
-    (0..5).map { |e| e = check_review(e) }.split(',').map { |e| e.join(' ') }[0].split.map(&:to_i).uniq
+    (CHECKS.keys.first..CHECKS.keys.last).map { |e| e = check_review(e) }.compact.flatten.uniq
   end
 
   def check_review(number)
