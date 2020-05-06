@@ -54,7 +54,7 @@ en:
       greeting: 'Hello,'
       body: "You have cards for review! Let's check it."
       subject: 'You have card for review!'
-      default: "'flashcards@gmail.com'"
+      default: "flashcards@gmail.com"
   button:
     logout: 'Log out'
     login: 'Log in'
