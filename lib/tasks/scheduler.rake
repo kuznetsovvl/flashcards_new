@@ -2,6 +2,6 @@
 
 task send_review_cards: :environment do
   puts 'Sending messages...'
-  NotifyReviewCards.notify_review
+  Notifications::ReviewReminder.new.call
   puts 'done.'
 end
