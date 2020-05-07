@@ -60,7 +60,7 @@ RSpec.feature 'Users', type: :feature do
       within('.actions') do
         click_button 'Log in'
       end
-      expect(page).to have_content('Email or password was invalid')
+      expect(page).to have_content(I18n.t('reg_users.invalid_login'))
     end
   end
 end

@@ -15,7 +15,6 @@ RSpec.feature 'Cards', type: :feature do
       click_button 'Create Card'
       expect(page).to have_content(I18n.t('cards.success.create'))
     end
-
     scenario 'fail to create card' do
       click_button 'Create Card'
       expect(page).to have_content(I18n.t('cards.error.create'))
@@ -35,7 +34,6 @@ RSpec.feature 'Cards', type: :feature do
       click_button 'Update Card'
       expect(page).to have_content(I18n.t('cards.success.update'))
     end
-
     scenario 'fail to update card' do
       find('input#card_original_text').set('')
       click_button 'Update Card'
