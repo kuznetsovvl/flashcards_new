@@ -8,6 +8,7 @@ gem 'aws-sdk-s3'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'damerau-levenshtein', '~> 1.1'
 gem 'fabrication'
+gem 'http_accept_language'
 gem 'jbuilder', '~> 2.7'
 gem 'nokogiri'
 gem 'paperclip'
@@ -19,6 +20,7 @@ gem 'rmagick'
 gem 'rubocop', '~> 0.75.1', require: false
 gem 'sass-rails', '~> 5'
 gem 'simple_form'
+gem 'slim-rails'
 gem 'sorcery'
 gem 'turbolinks', '~> 5'
 gem 'whenever', require: false

@@ -1,102 +1,100 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  main_page:
-    header: "Flashcarder"
-    add_deck_link: "Add a deck"
-    all_deck_link: "All decks"
-    header_subtitle: "The first manager of flash-cards. Exactly."
-  reg_users:
-    login: "Logged in!"
-    logout: "Logged out"
-    sign_up: 'Sign up!'
-    edit: 'Editing users'
-    invalid_login: "Email or password was invalid"
-    should_login: "You must be logged in to access this section"
-    login_github: "Login with Github"
-    login_external: "Login with %{provider}"
-    failed_login_external: "Failed to login from %{provider}"
-    success:
-      update: 'The user has updated successfully'   
-    error:
-      update: 'Could not update the user'
+  cards:
+    new:
+      title: New card
+    show:
+      original_text: 'Word: '
+      translated_text: 'Translate: ' 
+      updating_date: 'Last checking: '
+    edit:
+      title: Editing card
+    create:
+      success: The card has created successfully
+      error: Could not create the card
+    update:
+      success: The card has updated successfully
+      error: Could not update the card
+    destroy:
+      success: The card was removed successfully 
+    trainer:
+      success: Awesome!
+      info: "Awesome! The right answer is: %{translated_text} but you typed %{user_answer}"
+      error: Try again!
+      count: "You've made: %{mistakes} mistakes"
+  decks:
+    index:
+      name: 'Deck: '
+    new:
+      title: New deck
+    show:
+      add_card: Create new card
+    edit:
+      title: Editing deck      
+    create:
+      success: The deck has created successfully
+      error: Could not create the deck
+    update:
+      success: The deck has updated successfully
+      error: Could not update the deck
+    destroy:
+      success: The deck was removed successfully
+  users:
+    edit:
+      title: Editing users
+      title_locale: What language do you prefer?
+      password: Change password
+      languages:
+        en: English
+        ru: Russian
+    new:
+      title: New user
+    create:
+      success: Sign up!
+    update:
+      success: The user has updated successfully
+      error: Could not update the user
+    should_login: You must be logged in to access this section
+  sessions:
+    new:
+      title: Log in
+    create:
+      success: Logged in!
+      error: Email or password was invalid
+    destroy:
+      success: Logged out
+  oauths:
+    callback:
+      success: "Login with %{provider}"
+      error: "Failed to login from %{provider}"
+  navbar:
+    brand_name: Flashcarder
+    signup: Sign up
+    signin: Sign in
+    logout: Log out
+    login_github: Login with Github
+    settings: Settings
+    languages:
+      ru: Russian
+      en: English
+  body:
+    title: Flashcarder
+    subtitle: The first manager of flash-cards. Exactly.
+    add_deck_link: Add a deck
+    all_deck_link: All decks
+    content_html: Sometimes i will ask you some <br/> words to know you better   
+  buttons:
+    back: Back
+    edit: Edit
+    show: Show
+    update: Update
+    destroy: Destroy
+    login: Log in
+    check: Check
   mailer:
     pending_cards:
-      greeting: 'Hello,'
-      body: "You have cards for review! Let's check it."
-      subject: 'You have card for review!'
-      default: "flashcards@gmail.com"
-  button:
-    logout: 'Log out'
-    login: 'Log in'
-    sign_up: 'Sign up!'
-    update_user: "Update user info"
-    check: 'Check'
-  link:
-    back: 'Back'
-    edit: 'Edit'
-    show: 'Show'
-    destroy: 'Destroy'
-  form:
-    login: 'Log in'
-    error_message: 'Form is invalid'
-  deck:
-    name: 'Deck: '
-    new: 'New deck'
-    edit: 'Editing Deck'
-    success:
-      create: 'The deck has created successfully' 
-      destroy: 'The deck was removed successfully'
-      update: 'The deck has updated successfully'
-    error:
-      create: 'Could not save the deck'
-      update: 'Could not update the deck'
-  cards:
-    name: "Cards: "
-    description: "Translate: "
-    updating_date: "Last checking: "
-    create_new_card: 'Create new card'
-    new: 'New card'
-    edit: 'Editing cards'
-    success:
-      create: 'The card has created successfully'
-      update: 'The card has updated successfully'   
-      destroy: 'The card was removed successfully'
-    error:
-      update: 'Could not update the card'
-      create: 'Could not save the card'
-  trainer:
-    success: 'Awesome!'
-    success_with_mistake: "Awesome! The right answer is: %{translated_text} but you typed %{user_answer}"
-    error: 'Try again!'
-    count: "You've made: %{mistakes} mistakes"
-  error: 'error'
+      greeting: Hello,
+      body: You have cards for review! Let's check it.
+      subject: You have card for review!
+      default: flashcards@gmail.com
+  error: error

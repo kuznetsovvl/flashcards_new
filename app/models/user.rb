@@ -12,6 +12,6 @@ class User < ApplicationRecord
 
   has_many :decks, dependent: :destroy
 
-  validates :password, confirmation: true, presence: true
+  validates :password, confirmation: true, presence: true, if: -> { new_record? || crypted_password_changed? }
   validates :email, presence: true, uniqueness: true
 end

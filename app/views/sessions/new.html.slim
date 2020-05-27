@@ -1,0 +1,5 @@
+h1= t('.title')
+= simple_form_for :login, url: sessions_path do |f|
+  = f.input :email
+  = f.input :password
+  = f.button :submit, t('buttons.login')

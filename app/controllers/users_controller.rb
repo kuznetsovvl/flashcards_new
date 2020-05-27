@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to root_path, notice: t('reg_users.sign_up')
+      redirect_to root_path, notice: t('.success')
     else
       render :new
     end
@@ -21,17 +21,21 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      flash[:success] = I18n.t 'reg_users.success.update'
+      flash[:success] = t('.success')
       redirect_to root_path
     else
-      flash.now[:error] = I18n.t 'reg_users.error.update'
+      flash.now[:error] = t('.error')
       render 'edit'
     end
+  end
+
+  def change_password
+    @user = User.find(params[:id])
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation)
+    params.require(:user).permit(:email, :password, :password_confirmation, :locale)
   end
 end

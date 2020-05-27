@@ -1,0 +1,5 @@
+= simple_form_for [@deck, @card], html: { multipart: true }, local: true do |f|
+  = f.input :image
+  = f.input :original_text
+  = f.input :translated_text
+  = f.button :submit, class: 'btn btn-success'

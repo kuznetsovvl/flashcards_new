@@ -1,0 +1,10 @@
+- @decks.find_each do |deck|
+  = t('.name')
+  = deck.name
+  br/
+  = link_to t('buttons.show'),deck_path(deck)
+  br/
+  = link_to t('buttons.edit'),edit_deck_path(deck)
+  br/
+  = button_to t('buttons.destroy'), deck_path(deck), method: :delete
+  br/

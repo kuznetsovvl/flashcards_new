@@ -16,7 +16,7 @@ RSpec.describe CardsController, type: :controller do
 
       it 'redirects to card' do
         post :create, params: { deck_id: deck.id, card: attrs }
-        expect(response).to redirect_to deck_cards_path
+        expect(response).to redirect_to deck_path(deck)
       end
     end
 
