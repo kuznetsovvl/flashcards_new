@@ -20,28 +20,23 @@ class CardsController < ApplicationController
     @card = @deck.cards.new(card_params)
 
     if @card.save
-      flash[:success] = t('.success')
-      redirect_to @deck
+      redirect_to @deck, success: t('.success')
     else
-      flash.now[:error] = t('.error')
-      render 'new'
+      render 'new', notice: t('.error')
     end
   end
 
   def update
     if @card.update(card_params)
-      flash[:success] = t('.success')
-      redirect_to @deck
+      redirect_to @deck, success: t('.success')
     else
-      flash.now[:error] = t('.error')
-      render 'edit'
+      render 'edit', error: t('.error')
     end
   end
 
   def destroy
     @card.destroy
-    flash[:success] = t('.success')
-    redirect_to @deck
+    redirect_to @deck, error: t('.success')
   end
 
   def trainer

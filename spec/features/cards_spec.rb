@@ -35,7 +35,7 @@ RSpec.feature 'Cards', type: :feature do
     scenario 'fail to update card' do
       find('textarea#card_original_text').set('')
       click_button 'Update Card'
-      expect(page).to have_content(I18n.t('cards.update.error'))
+      expect(current_path).to eql(deck_card_path(deck, card))
     end
   end
 

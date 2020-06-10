@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.3'
-gem 'aws-sdk-s3'
+gem 'aws-sdk-s3', '~> 1.0.0.rc2'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'damerau-levenshtein', '~> 1.1'
 gem 'fabrication'

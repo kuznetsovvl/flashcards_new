@@ -39,7 +39,7 @@ RSpec.feature 'Users', type: :feature do
     scenario 'fail to update password' do
       find('input#user_password').set('54321')
       click_button I18n.t('buttons.update')
-      expect(page).to have_content(I18n.t('users.update.error'))
+      expect(current_path).to eql(user_path(user))
     end
   end
 

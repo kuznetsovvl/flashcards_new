@@ -10,6 +10,7 @@ RSpec.describe DecksController, type: :controller do
       before do
         login_user(user)
       end
+
       it 'creates a new deck' do
         expect do
           post :create, params: { deck: attrs }

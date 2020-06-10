@@ -31,10 +31,10 @@ RSpec.feature 'Decks', type: :feature do
       expect(page).to have_content(I18n.t('decks.update.success'))
     end
 
-    scenario 'fail to update card' do
+    scenario 'fail to update deck' do
       find('input#deck_name').set('')
       click_button 'Update Deck'
-      expect(page).to have_content(I18n.t('decks.update.error'))
+      expect(current_path).to eql(deck_path(deck))
     end
   end
 
