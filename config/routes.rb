@@ -21,8 +21,8 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users do
-    get 'change_password', on: :member
+  resources :users, except: %i[index] do
+    get 'edit_password', on: :member
     resources :decks
   end
 

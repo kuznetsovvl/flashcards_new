@@ -27,7 +27,7 @@ RSpec.feature 'Users', type: :feature do
   describe 'update user password' do
     let!(:user) { create :user }
     before do
-      visit change_password_user_path(user)
+      visit edit_password_user_path(user)
     end
     scenario 'successfuly update password' do
       find('input#user_password').set('54321')
