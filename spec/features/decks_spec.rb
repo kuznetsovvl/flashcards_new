@@ -11,13 +11,11 @@ RSpec.feature 'Decks', type: :feature do
     end
     scenario 'successfully creates deck' do
       find('input#deck_name').set('Example')
-      click_button 'Create Deck'
-      expect(page).to have_content(I18n.t('deck.success.create'))
+      expect { click_button 'Create Deck' }.to change(Deck, :count).by(1)
     end
 
     scenario 'fail to create card' do
-      click_button 'Create Deck'
-      expect(page).to have_content(I18n.t('deck.error.create'))
+      expect { click_button 'Create Deck' }.to change(Deck, :count).by(0)
     end
   end
 
@@ -30,13 +28,24 @@ RSpec.feature 'Decks', type: :feature do
     scenario 'successfuly update deck' do
       find('input#deck_name').set('foo')
       click_button 'Update Deck'
-      expect(page).to have_content(I18n.t('deck.success.update'))
+      expect(page).to have_content(I18n.t('decks.update.success'))
     end
 
-    scenario 'fail to update card' do
+    scenario 'fail to update deck' do
       find('input#deck_name').set('')
       click_button 'Update Deck'
-      expect(page).to have_content(I18n.t('deck.error.update'))
+      expect(current_path).to eql(deck_path(deck))
+    end
+  end
+
+  describe 'destroy deck' do
+    let!(:deck) { create :deck }
+    before do
+      login_scenario
+      visit decks_path
+    end
+    scenario 'successfuly destroy deck' do
+      expect { click_button I18n.t('buttons.destroy').to_s }.to change(Deck, :count).by(-1)
     end
   end
 
@@ -44,10 +53,8 @@ RSpec.feature 'Decks', type: :feature do
 
   def login_scenario
     visit '/sessions/new'
-    find('input#email').set('example@mail.com')
-    find('input#password').set('12345')
-    within('.actions') do
-      click_button 'Log in'
-    end
+    find('input#login_email').set('example@mail.com')
+    find('input#login_password').set('12345')
+    click_button I18n.t('buttons.login').to_s
   end
 end

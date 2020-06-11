@@ -14,14 +14,20 @@ Rails.application.routes.draw do
     get ':provider' => 'oauths#oauth', as: :auth_at_provider
   end
 
-  resources :decks do
-    resources :cards
+  scope '(:locale)', locale: /en|ru/,
+                     defaults: { locale: I18n.default_locale } do
+    resources :decks do
+      resources :cards
+    end
   end
-  resources :users do
+
+  resources :users, except: %i[index] do
+    get 'edit_password', on: :member
     resources :decks
   end
 
   resources :sessions, only: %i[new create destroy]
+
   resources :cards do
     put 'trainer', on: :member
   end

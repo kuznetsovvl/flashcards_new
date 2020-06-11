@@ -1,0 +1,100 @@
+
+ru:
+  cards:
+    new:
+      title: Новая карточка
+    show:
+      original_text: 'Слово: '
+      translated_text: 'Перевод: ' 
+      updating_date: 'Последняя проверка: '
+    edit:
+      title: Изменение карточки
+    create:
+      success: Карточка создана успешно
+      error: Не удалось создать карточку
+    update:
+      success: Карточка обновлена успешно
+      error: Не удалось обновить карточку
+    destroy:
+      success: Карточка была успешно удалена 
+    trainer:
+      success: Чудесно!
+      info: "Чудесно! Правильный ответ: %{translated_text} но ты написал %{user_answer}"
+      error: Попробуй еще раз!
+      count: "Ты сделал: %{mistakes} ошибки"
+  decks:
+    index:
+      name: 'Колода: '
+    new:
+      title: Новая колода
+    show:
+      add_card: Создать новую карточку
+    edit:
+      title: Редактирование колода       
+    create:
+      success: Колода успешно была создана
+      error: Не удалось создать колоду
+    update:
+      success: Колода успешно обновилась
+      error: Не удалось обновить колоду
+    destroy:
+      success: Колода была успешна удалена
+  users:
+    edit:
+      title: Редактирование пользователя
+      title_locale: Какой язык Вы предпочитаете?
+      password: Изменить пароль
+      languages:
+        en: Английский
+        ru: Русский      
+    new:
+      title: Новый пользователь
+    create:
+      success: Зарегистироваться!
+    update:
+      success: Пользователь успешно обновлен
+      error: Не удалось обновить пользователя
+    should_login: Вы должны войти в сиситему, чтобы получить доступ к этому разделу
+  sessions:
+    new:
+      title: Авторизоваться
+    create:
+      success: Войти в систему!
+      error: адрес электронной почты или пароль были неверны
+    destroy:
+      success: Выйти
+  oauths:
+    callback:
+      success: "Войти %{provider}"
+      error: "Не удалось войти %{provider}"
+  navbar:
+    brand_name: Flashcarder
+    signup: Зарегистрироваться
+    signin: Войти
+    logout: Выйти
+    login_github: Войти через Github
+    settings: Настройки
+    languages:
+      ru: Русский
+      en: Английский
+  body:
+    title: Flashcarder
+    subtitle: Первый менеджер флеш-карточек. Скорее всего.
+    add_deck_link: Добавить колоду
+    all_deck_link: Все колоды
+    content_html: Иногда я буду спрашивать слова,<br/> чтобы узнать Вас лучше   
+  buttons:
+    back: Назад
+    edit: Редактировать
+    show: Показать
+    update: Обновить
+    destroy: Удалить 
+    login: Авторизоваться
+    check: Проверить
+  mailer:
+    pending_cards:
+      greeting: Привет,
+      body: У вас есть карты для просмотра! Давай проверим это.
+      subject: У вас есть карточка для обзора!
+      default: flashcards@gmail.com
+  error: Ошибка

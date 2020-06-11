@@ -4,16 +4,22 @@ class SessionsController < ApplicationController
   def new; end
 
   def create
-    if login(params[:email], params[:password])
-      redirect_to root_url, notice: t('reg_users.login')
+    if login(resource_params[:email], resource_params[:password])
+      redirect_to root_url, notice: t('.success')
     else
-      flash.now.alert = I18n.t 'reg_users.invalid_login'
+      flash.now.alert = t('.error')
       render :new
     end
   end
 
   def destroy
     logout
-    redirect_to root_url, notice: t('reg_users.logout')
+    redirect_to root_url, notice: t('.success')
+  end
+
+  private
+
+  def resource_params
+    params.require(:login).permit(:email, :password)
   end
 end

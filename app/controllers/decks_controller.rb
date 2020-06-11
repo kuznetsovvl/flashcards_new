@@ -12,11 +12,9 @@ class DecksController < ApplicationController
     @deck = current_user.decks.new(deck_params)
 
     if @deck.save
-      flash[:success] = I18n.t 'deck.success.create'
-      redirect_to decks_path
+      redirect_to decks_path, success: t('.success')
     else
-      flash[:error] = I18n.t 'deck.error.create'
-      render 'new'
+      render 'new', error: t('.error')
     end
   end
 
@@ -26,8 +24,7 @@ class DecksController < ApplicationController
 
   def destroy
     @deck.destroy
-    flash[:success] = I18n.t 'deck.success.destroy'
-    redirect_to decks_path
+    redirect_to decks_path, success: t('.success')
   end
 
   def new
@@ -36,11 +33,9 @@ class DecksController < ApplicationController
 
   def update
     if @deck.update(deck_params)
-      flash[:success] = I18n.t 'deck.success.update'
-      redirect_to decks_path
+      redirect_to decks_path, success: t('.success')
     else
-      flash.now[:error] = I18n.t 'deck.error.update'
-      render 'edit'
+      render 'edit', error: t('.error')
     end
   end
 

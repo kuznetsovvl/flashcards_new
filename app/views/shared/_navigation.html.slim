@@ -1,0 +1,15 @@
+.header
+  h1.header-title= t('body.title')
+  nav.navbar
+    span.navbar-link
+      p.navbar-link-text
+        i.fas.fa-border-all
+      = link_to t('body.all_deck_link'), decks_path
+    - if random_card.nil?
+      = render 'shared/info_form'
+    - else
+      = render 'shared/trainer_form'
+    span.navbar-link
+      p.navbar-link-text
+        i.fas.fa-plus
+      = link_to t('body.add_deck_link'), new_deck_path
