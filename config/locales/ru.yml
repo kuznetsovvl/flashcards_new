@@ -6,7 +6,7 @@ ru:
     show:
       original_text: 'Слово: '
       translated_text: 'Перевод: ' 
-      updating_date: 'Последняя проверка: '
+      review_time: 'Следующая проверка: '
     edit:
       title: Изменение карточки
     create:
@@ -22,6 +22,7 @@ ru:
       info: "Чудесно! Правильный ответ: %{translated_text} но ты написал %{user_answer}"
       error: Попробуй еще раз!
       count: "Ты сделал: %{mistakes} ошибки"
+      quality: Оцените качество запоминания слова
   decks:
     index:
       name: 'Колода: '

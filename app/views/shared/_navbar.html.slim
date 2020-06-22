@@ -6,14 +6,14 @@ nav.navbar.navbar-expand.navbar-dark.bg-dark
     ul.navbar-nav.mr-auto
       - if current_user
         li.nav-item
-          = button_to t('navbar.settings'), edit_user_path(current_user), class: 'btn btn-dark', method: :get
+          = link_to t('navbar.settings'), edit_user_path(current_user), class: 'btn btn-dark', method: :get
         li.nav-item
-          = button_to t('navbar.logout'), logout_path, class: 'btn btn-dark', method: :delete
+          = link_to t('navbar.logout'), logout_path, class: 'btn btn-dark', method: :delete
       - else
         li.nav-item
-          = button_to t('navbar.signup'), signup_path, class: 'btn btn-dark'
+          = link_to t('navbar.signup'), signup_path, class: 'btn btn-dark', method: :post
         li.nav-item
-          = button_to t('navbar.signin'), login_path, class: 'btn btn-dark'
+          = link_to t('navbar.signin'), login_path, class: 'btn btn-dark', method: :post
         li.nav-item
           = link_to t('navbar.login_github'), auth_at_provider_path(:provider => :github), class: 'nav-link'
     li.nav-item.d-flex

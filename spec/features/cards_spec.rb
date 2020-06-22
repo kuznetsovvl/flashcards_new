@@ -47,13 +47,13 @@ RSpec.feature 'Cards', type: :feature do
       visit deck_card_path(deck, card)
     end
     scenario 'successfuly destroy card' do
-      expect { click_button I18n.t('buttons.destroy').to_s }.to change(Card, :count).by(-1)
+      expect { click_link I18n.t('buttons.destroy').to_s }.to change(Card, :count).by(-1)
     end
   end
 
   describe 'trainer card is esteblished immediately' do
     let!(:deck) { create :deck }
-    let!(:card) { create(:card, updated_at: 10.seconds.ago, deck: deck) }
+    let!(:card) { create(:card, deck: deck) }
     before do
       login_scenario
     end
@@ -67,64 +67,9 @@ RSpec.feature 'Cards', type: :feature do
     end
   end
 
-  describe 'trainer card after 12 hours' do
-    let!(:deck) { create :deck }
-    let!(:card) { create(:card, deck: deck, updated_at: 13.hours.ago, status: 1) }
-    before do
-      login_scenario
-    end
-    scenario 'successfully' do
-      train_card_scenario
-    end
-  end
-
-  describe 'trainer card after 3 days' do
-    let!(:deck) { create :deck }
-    let!(:card) { create(:card, deck: deck, updated_at: 4.days.ago, status: 2) }
-    before do
-      login_scenario
-    end
-    scenario 'successfully' do
-      train_card_scenario
-    end
-  end
-
-  describe 'trainer card after 7 days' do
-    let!(:deck) { create :deck }
-    let!(:card) { create(:card, deck: deck, updated_at: 8.days.ago, status: 3) }
-    before do
-      login_scenario
-    end
-    scenario 'successfully' do
-      train_card_scenario
-    end
-  end
-
-  describe 'trainer card after 2 weeks' do
-    let!(:deck) { create :deck }
-    let!(:card) { create(:card, deck: deck, updated_at: 3.weeks.ago, status: 4) }
-    before do
-      login_scenario
-    end
-    scenario 'successfully' do
-      train_card_scenario
-    end
-  end
-
-  describe 'trainer card after 1 month' do
-    let!(:deck) { create :deck }
-    let!(:card) { create(:card, deck: deck, updated_at: 2.month.ago, status: 5) }
-    before do
-      login_scenario
-    end
-    scenario 'successfully' do
-      train_card_scenario
-    end
-  end
-
   describe 'trainer card with mistakes' do
     let!(:deck) { create :deck }
-    let!(:card) { create(:card, :card_review, deck: deck) }
+    let!(:card) { create(:card, deck: deck) }
     let(:params) do
       { answer: 'Hloa' }
     end
@@ -140,7 +85,7 @@ RSpec.feature 'Cards', type: :feature do
 
   describe 'trainer card' do
     let!(:deck) { create :deck }
-    let!(:card) { create(:card, deck: deck, updated_at: 2.month.ago, status: 5) }
+    let!(:card) { create(:card, deck: deck, updated_at: 2.month.ago) }
     before do
       login_scenario
     end

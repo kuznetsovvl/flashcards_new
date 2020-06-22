@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddDetailsToCards < ActiveRecord::Migration[6.0]
   def change
     add_column :cards, :easiness, :float, default: 2.5

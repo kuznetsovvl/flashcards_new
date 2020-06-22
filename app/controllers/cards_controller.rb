@@ -41,7 +41,9 @@ class CardsController < ApplicationController
 
   def trainer
     @card = RandomCard.new.today_card(current_user)
-    @result = CheckCardAnswer.new(params[:other][:user_answer], @card)
+    @result = CheckCardAnswer.new(user_answer: params[:other][:user_answer],
+                                  card: @card,
+                                  quality: params[:other][:quality])
     flash.now[:success] = t('.success') if @result.success?
     flash.now[:info] = flash_info if @result.info?
     if @result.error?
@@ -65,6 +67,6 @@ class CardsController < ApplicationController
   end
 
   def card_params
-    params.require(:card).permit(:original_text, :translated_text, :updated_at, :status, :mistake_counter, :image)
+    params.require(:card).permit(:original_text, :translated_text, :mistake_counter, :image)
   end
 end
