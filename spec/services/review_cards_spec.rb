@@ -11,7 +11,7 @@ describe ReviewCards do
     end
   end
   context 'has not card for review' do
-    let!(:card) { create(:card, :card_review_later) }
+    let!(:card) { create(:card, :review_later) }
     it do
       expect(result.find_user_for_review).to be_empty
     end

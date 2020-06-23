@@ -47,7 +47,7 @@ RSpec.feature 'Cards', type: :feature do
       visit deck_card_path(deck, card)
     end
     scenario 'successfuly destroy card' do
-      expect { click_link I18n.t('buttons.destroy').to_s }.to change(Card, :count).by(-1)
+      expect { click_button I18n.t('buttons.destroy').to_s }.to change(Card, :count).by(-1)
     end
   end
 

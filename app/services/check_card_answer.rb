@@ -48,14 +48,13 @@ class CheckCardAnswer
   end
 
   def success_saver
-    @supermemo.algorithm
+    @supermemo.call
   end
 
   def error_saver
     if card.mistake_counter == MAX_MISTAKE
       card.mistake_counter = 0
-      card.review_time = Time.now
-      card.save
+      card.save!
     end
   end
 

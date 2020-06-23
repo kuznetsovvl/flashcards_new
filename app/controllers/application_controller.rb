@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
   include HttpAcceptLanguage::AutoLocale
   before_action :set_locale
   add_flash_types :success, :error
-  skip_before_action :verify_authenticity_token
 
   def require_login
     unless logged_in?

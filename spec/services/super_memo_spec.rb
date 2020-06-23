@@ -8,12 +8,12 @@ describe SuperMemo do
   context 'with 5 quality' do
     let(:input) { '5' }
     it 'should change review time in 1 day' do
-      result.algorithm
+      result.call
       expect(card.interval).to eq(1)
     end
     it 'should change review time in 6 days' do
       2.times do
-        result.algorithm
+        result.call
       end
       expect(card.interval).to eq(6)
     end
@@ -22,7 +22,7 @@ describe SuperMemo do
     let(:input) { '3' }
     it 'should change review time in 1 day' do
       2.times do
-        result.algorithm
+        result.call
       end
       expect(card.interval).to eq(1)
     end
