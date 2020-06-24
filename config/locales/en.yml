@@ -6,7 +6,7 @@ en:
     show:
       original_text: 'Word: '
       translated_text: 'Translate: ' 
-      updating_date: 'Last checking: '
+      review_time: 'The next review: '
     edit:
       title: Editing card
     create:
@@ -22,6 +22,7 @@ en:
       info: "Awesome! The right answer is: %{translated_text} but you typed %{user_answer}"
       error: Try again!
       count: "You've made: %{mistakes} mistakes"
+      quality: Appreciate the quality of memorizing the word
   decks:
     index:
       name: 'Deck: '

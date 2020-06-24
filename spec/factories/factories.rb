@@ -30,11 +30,14 @@ FactoryBot.define do
     original_text { 'Hello' }
     translated_text { 'Hola' }
     updated_at { Time.now }
-    status { '0' }
     mistake_counter { '0' }
+    review_time { Time.now }
+    easiness { '2.5' }
+    interval { '1' }
+    repetitions { '0' }
 
-    trait :card_review do
-      updated_at { 10.seconds.ago }
+    trait :review_later do
+      review_time { Time.now + 1.day }
     end
   end
 

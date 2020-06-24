@@ -7,8 +7,8 @@ br/
 = t('.translated_text') 
 = @card.translated_text
 br/
-= t('.updating_date')
-= @card.updated_at.strftime("%Y-%b-%d")
+= t('.review_time')
+= @card.review_time.strftime("%Y-%b-%d")
 br/
 = link_to t('buttons.edit'), edit_deck_card_path(@deck, @card)
 br/

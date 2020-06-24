@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_200_517_183_304) do
+ActiveRecord::Schema.define(version: 20_200_618_210_904) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20_200_517_183_304) do
   create_table 'cards', force: :cascade do |t|
     t.text 'original_text', null: false
     t.text 'translated_text', null: false
-    t.datetime 'review_time'
+    t.datetime 'review_time', default: -> { 'CURRENT_TIMESTAMP' }
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
     t.string 'image_file_name'
@@ -36,8 +36,10 @@ ActiveRecord::Schema.define(version: 20_200_517_183_304) do
     t.bigint 'image_file_size'
     t.datetime 'image_updated_at'
     t.bigint 'deck_id'
-    t.integer 'status', default: 0
     t.integer 'mistake_counter', default: 0
+    t.float 'easiness', default: 2.5
+    t.integer 'interval', default: 1
+    t.integer 'repetitions', default: 0
     t.index ['deck_id'], name: 'index_cards_on_deck_id'
   end
 

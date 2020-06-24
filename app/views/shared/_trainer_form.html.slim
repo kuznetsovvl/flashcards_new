@@ -4,4 +4,5 @@
   = f.hidden_field 'translated_text'
   = simple_fields_for :other do |o|
     = o.input :user_answer, label: false
+    = o.input :quality, collection: SuperMemo::QUALITY_RANGE, label: I18n.t('cards.trainer.quality'), selected: 5
   = f.button :submit, t('buttons.check'), class: 'btn btn-dark'

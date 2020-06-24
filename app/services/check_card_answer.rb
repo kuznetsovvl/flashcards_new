@@ -7,10 +7,13 @@ class CheckCardAnswer
 
   MAX_MISTAKE = 3
 
-  attr_reader :params, :card
-  def initialize(params, card)
-    @params = params
-    @card = card
+  attr_reader :user_answer, :card, :quality
+
+  def initialize(args)
+    @user_answer = args[:user_answer]
+    @card = args[:card]
+    @quality = args[:quality]
+    @supermemo = SuperMemo.new(card, quality)
   end
 
   def success?
@@ -46,21 +49,17 @@ class CheckCardAnswer
   end
 
   def success_saver
-    card.status += 1
-    card.mistake_counter = 0
-    card.save
+    @supermemo.call
   end
 
   def error_saver
     if card.mistake_counter == MAX_MISTAKE
-      card.status = 0
       card.mistake_counter = 0
-      card.save
+      card.save!
     end
   end
 
   def levenshtein_check
-    @dl = DamerauLevenshtein
-    @dl.distance(card[:translated_text].downcase, params.downcase)
+    DamerauLevenshtein.distance(card[:translated_text].downcase, user_answer.downcase)
   end
 end

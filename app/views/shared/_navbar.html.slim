@@ -11,9 +11,9 @@ nav.navbar.navbar-expand.navbar-dark.bg-dark
           = button_to t('navbar.logout'), logout_path, class: 'btn btn-dark', method: :delete
       - else
         li.nav-item
-          = button_to t('navbar.signup'), signup_path, class: 'btn btn-dark'
+          = button_to t('navbar.signup'), signup_path, class: 'btn btn-dark', method: :post
         li.nav-item
-          = button_to t('navbar.signin'), login_path, class: 'btn btn-dark'
+          = button_to t('navbar.signin'), login_path, class: 'btn btn-dark', method: :post
         li.nav-item
           = link_to t('navbar.login_github'), auth_at_provider_path(:provider => :github), class: 'nav-link'
     li.nav-item.d-flex
