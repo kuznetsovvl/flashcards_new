@@ -60,7 +60,6 @@ class CheckCardAnswer
   end
 
   def levenshtein_check
-    @dl = DamerauLevenshtein
-    @dl.distance(card[:translated_text].downcase, user_answer.downcase)
+    DamerauLevenshtein.distance(card[:translated_text].downcase, user_answer.downcase)
   end
 end
