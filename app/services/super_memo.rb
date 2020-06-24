@@ -3,6 +3,8 @@
 require 'damerau-levenshtein'
 
 class SuperMemo
+  QUALITY_RANGE = (1..5).freeze
+
   attr_reader :card, :quality
 
   def initialize(card, quality)
@@ -25,14 +27,14 @@ class SuperMemo
   end
 
   def interval_counter
-    if card.repetitions <= 1
-      interval = 1
-    elsif card.repetitions == 2
-      interval = 6
-    else card.repetitions
-         interval *= card.easiness
-    end
-    card.interval = interval
+    result = if card.repetitions <= 1
+               1
+             elsif card.repetitions == 2
+               6
+             else
+               card.interval *= card.easiness
+            end
+    card.interval = result
   end
 
   def set_review_time

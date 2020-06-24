@@ -8,10 +8,11 @@ class CheckCardAnswer
   MAX_MISTAKE = 3
 
   attr_reader :user_answer, :card, :quality
+
   def initialize(args)
     @user_answer = args[:user_answer]
     @card = args[:card]
-    @quality = args[:quality].to_i
+    @quality = args[:quality]
     @supermemo = SuperMemo.new(card, quality)
   end
 
