@@ -16,6 +16,7 @@ gem 'pg', '~> 0.21'
 gem 'pry'
 gem 'puma', '~> 3.11'
 gem 'rails', '~> 6.0.0'
+gem 'rake', '~> 12.3', '>= 12.3.3'
 gem 'rmagick'
 gem 'rubocop', '~> 0.75.1', require: false
 gem 'sass-rails', '~> 5'
@@ -25,6 +26,8 @@ gem 'sorcery'
 gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 4.0'
 gem 'whenever', require: false
+gem 'airbrake'
+gem 'newrelic_rpm'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]

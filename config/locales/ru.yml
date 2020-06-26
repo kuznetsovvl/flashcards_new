@@ -97,5 +97,5 @@ ru:
       greeting: Привет,
       body: У вас есть карты для просмотра! Давай проверим это.
       subject: У вас есть карточка для обзора!
-      default: flashcards@gmail.com
+      default: me@sandboxc6f29aa3d57248b991c0198a982aec3b.com
   error: Ошибка

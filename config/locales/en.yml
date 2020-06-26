@@ -97,5 +97,5 @@ en:
       greeting: Hello,
       body: You have cards for review! Let's check it.
       subject: You have card for review!
-      default: flashcards@gmail.com
+      default: me@sandboxc6f29aa3d57248b991c0198a982aec3b.com
   error: error
