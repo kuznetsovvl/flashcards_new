@@ -4,12 +4,14 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.3'
+gem 'airbrake'
 gem 'aws-sdk-s3', '~> 1.0.0.rc2'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'damerau-levenshtein', '~> 1.1'
 gem 'fabrication'
 gem 'http_accept_language'
 gem 'jbuilder', '~> 2.7'
+gem 'newrelic_rpm'
 gem 'nokogiri'
 gem 'paperclip'
 gem 'pg', '~> 0.21'
@@ -26,8 +28,6 @@ gem 'sorcery'
 gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 4.0'
 gem 'whenever', require: false
-gem 'airbrake'
-gem 'newrelic_rpm'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]

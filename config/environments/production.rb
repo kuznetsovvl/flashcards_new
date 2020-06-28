@@ -100,7 +100,7 @@ Rails.application.configure do
     domain: ENV.fetch('MAILGUN_DOMAIN'),
     user_name: ENV.fetch('MAILGUN_USER_NAME'),
     password: ENV.fetch('MAILGUN_PASSWORD'),
-    authentication: :plain,
+    authentication: :plain
   }
 
   # Inserts middleware to perform automatic connection switching.
