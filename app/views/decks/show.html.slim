@@ -3,4 +3,4 @@
     .col-4.image_cards
       = link_to (image_tag card.image.url(:thumb)), deck_card_path(@deck, card)
       br/
-= link_to t('.add_card'), new_deck_card_path(@deck), class: 'btn btn-dark'
+p = link_to t('.add_card'), new_deck_card_path(@deck), class: 'btn btn-dark'

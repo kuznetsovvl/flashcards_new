@@ -3,6 +3,7 @@
 class CardsController < ApplicationController
   before_action :get_deck, except: %i[trainer]
   before_action :set_card, except: %i[index new create trainer]
+  skip_before_action :verify_authenticity_token
 
   def index
     @cards = @deck.cards

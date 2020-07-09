@@ -26,7 +26,7 @@ gem 'simple_form'
 gem 'slim-rails'
 gem 'sorcery'
 gem 'turbolinks', '~> 5'
-gem 'webpacker', '~> 4.0'
+gem 'webpacker', '~> 5.x'
 gem 'whenever', require: false
 
 group :development, :test do
