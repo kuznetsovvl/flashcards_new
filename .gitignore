@@ -30,6 +30,7 @@ config/application.yml
 /config/master.key
 
 /public/packs
+/public/packs-test/js
 /node_modules
 /yarn-error.log
 yarn-debug.log*
