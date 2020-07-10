@@ -2,7 +2,7 @@
   = t('.name')
   = deck.name
   br/
-  = link_to t('buttons.show'),deck_path(deck)
+  = link_to t('buttons.show'),deck_path(deck), id: 'show_link'
   br/
   = link_to t('buttons.edit'),edit_deck_path(deck)
   br/
