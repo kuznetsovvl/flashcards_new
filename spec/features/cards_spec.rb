@@ -7,18 +7,15 @@ RSpec.feature 'Cards', type: :feature do
     let!(:deck) { create(:deck) }
     before do
       visit new_deck_card_path(deck)
-      find('input#card_original_text').set('foo')
+      find('textarea#card_original_text').set('foo')
     end
     scenario 'successfully creates card' do
-      find('input#card_translated_text').set('bar')
+      find('textarea#card_translated_text').set('bar')
       attach_file('card_image', "#{Rails.root}/spec/support/test.jpg")
-      click_button 'Create Card'
-      expect(page).to have_content(I18n.t('cards.success.create'))
+      expect { click_button 'Create Card' }.to change(Card, :count).by(1)
     end
-
     scenario 'fail to create card' do
-      click_button 'Create Card'
-      expect(page).to have_content(I18n.t('cards.error.create'))
+      expect { click_button 'Create Card' }.to change(Card, :count).by(0)
     end
   end
 
@@ -30,16 +27,15 @@ RSpec.feature 'Cards', type: :feature do
       visit edit_deck_card_path(deck, card)
     end
     scenario 'successfuly update card' do
-      find('input#card_original_text').set('foo')
+      find('textarea#card_original_text').set('foo')
       attach_file('card_image', "#{Rails.root}/spec/support/test.jpg")
       click_button 'Update Card'
-      expect(page).to have_content(I18n.t('cards.success.update'))
+      expect(page).to have_content(I18n.t('cards.update.success'))
     end
-
     scenario 'fail to update card' do
-      find('input#card_original_text').set('')
+      find('textarea#card_original_text').set('')
       click_button 'Update Card'
-      expect(page).to have_content(I18n.t('cards.error.update'))
+      expect(current_path).to eql(deck_card_path(deck, card))
     end
   end
 
@@ -48,29 +44,57 @@ RSpec.feature 'Cards', type: :feature do
     let!(:card) { create :card, deck: deck }
     before do
       login_scenario
-      visit deck_path(deck)
+      visit deck_card_path(deck, card)
     end
     scenario 'successfuly destroy card' do
-      expect { click_button 'Destroy' }.to change(Card, :count).by(-1)
+      expect { click_button I18n.t('buttons.destroy').to_s }.to change(Card, :count).by(-1)
+    end
+  end
+
+  describe 'trainer card is esteblished immediately' do
+    let!(:deck) { create :deck }
+    let!(:card) { create(:card, deck: deck) }
+    before do
+      login_scenario
+    end
+    scenario 'successfully' do
+      find('input#other_user_answer').set('Hola')
+      click_button I18n.t('buttons.check').to_s
+      expect(page).to have_content(I18n.t('cards.trainer.success'))
+    end
+    scenario 'fail to train card' do
+      train_card_scenario
+    end
+  end
+
+  describe 'trainer card with mistakes' do
+    let!(:deck) { create :deck }
+    let!(:card) { create(:card, deck: deck) }
+    let(:params) do
+      { answer: 'Hloa' }
+    end
+    before do
+      login_scenario
+    end
+    scenario 'successfully' do
+      find('input#other_user_answer').set('Hloa')
+      click_button I18n.t('buttons.check').to_s
+      expect(page).to have_content(I18n.t('cards.trainer.info', deep_interpolation: true, translated_text: card.translated_text, user_answer: params[:answer]))
     end
   end
 
   describe 'trainer card' do
     let!(:deck) { create :deck }
-    let(:card) { create(:card, updated_at: 10.days.ago, deck: deck) }
+    let!(:card) { create(:card, deck: deck, updated_at: 2.month.ago) }
     before do
       login_scenario
-      visit decks_path(deck, card)
     end
-    scenario 'successfully trains card' do
-      find('input#other_user_answer').set('Hola')
-      click_button 'Check'
-      expect(page).to have_content(I18n.t('trainer.success'))
-    end
-    scenario 'fail to train card' do
-      find('input#other_user_answer').set('foo')
-      click_button 'Check'
-      expect(page).to have_content(I18n.t('trainer.error'))
+    scenario 'train card roll back' do
+      3.times do
+        find('input#other_user_answer').set('Error')
+        click_button I18n.t('buttons.check').to_s
+      end
+      expect(page).to have_content(I18n.t('cards.trainer.count', deep_interpolation: true, mistakes: card.mistake_counter))
     end
   end
 
@@ -78,10 +102,14 @@ RSpec.feature 'Cards', type: :feature do
 
   def login_scenario
     visit '/sessions/new'
-    find('input#email').set('example@mail.com')
-    find('input#password').set('12345')
-    within('.actions') do
-      click_button 'Log in'
-    end
+    find('input#login_email').set('example@mail.com')
+    find('input#login_password').set('12345')
+    click_button I18n.t('buttons.login').to_s
+  end
+
+  def train_card_scenario
+    find('input#other_user_answer').set('Hola')
+    click_button I18n.t('buttons.check').to_s
+    expect(page).to have_content(I18n.t('cards.trainer.success'))
   end
 end

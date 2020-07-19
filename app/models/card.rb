@@ -3,7 +3,6 @@
 class Card < ApplicationRecord
   belongs_to :deck
 
-  scope :days_ago, -> { where('DATE(updated_at) <= ?', 3.days.ago.to_date) }
   validates :original_text, presence: true
   validates :translated_text, presence: true
   validate :compare

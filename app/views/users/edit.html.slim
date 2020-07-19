@@ -1,0 +1,5 @@
+h2= t('.title')
+= simple_form_for @user do |f|
+  = f.input :locale, label: t('.title_locale'), collection: [[t('users.edit.languages.en'), 'en'], [t('users.edit.languages.ru'), 'ru']]
+  = f.button :submit, t('buttons.update')
+= link_to t('users.edit.password'), edit_password_user_path

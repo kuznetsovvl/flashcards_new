@@ -1,0 +1,10 @@
+
+<% flash.each do |type, message| %>
+  $("#flash_messages").html("<%= type.to_s.humanize %>: <%= message.html_safe %>")
+<% end %>
+
+<% if random_card.nil? %>
+	$("#trainer-form").html('<%= j render "shared/info_form" %>');
+<% else %>
+	$("#trainer-form").html('<%= j render "shared/trainer_form" %>');
+<% end %>

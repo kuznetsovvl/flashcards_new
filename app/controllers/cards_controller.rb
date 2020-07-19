@@ -3,6 +3,7 @@
 class CardsController < ApplicationController
   before_action :get_deck, except: %i[trainer]
   before_action :set_card, except: %i[index new create trainer]
+  skip_before_action :verify_authenticity_token
 
   def index
     @cards = @deck.cards
@@ -20,41 +21,43 @@ class CardsController < ApplicationController
     @card = @deck.cards.new(card_params)
 
     if @card.save
-      flash[:success] = I18n.t 'cards.success.create'
-      redirect_to deck_cards_path
+      redirect_to @deck, success: t('.success')
     else
-      flash.now[:error] = I18n.t 'cards.error.create'
-      render 'new'
+      render 'new', notice: t('.error')
     end
   end
 
   def update
     if @card.update(card_params)
-      flash[:success] = I18n.t 'cards.success.update'
-      redirect_to @deck
+      redirect_to @deck, success: t('.success')
     else
-      flash.now[:error] = I18n.t 'cards.error.update'
-      render 'edit'
+      render 'edit', error: t('.error')
     end
   end
 
   def destroy
     @card.destroy
-    flash[:success] = I18n.t 'cards.success.destroy'
-    redirect_to decks_path
+    redirect_to @deck, error: t('.success')
   end
 
   def trainer
     @card = RandomCard.new.today_card(current_user)
-    if @card[:translated_text].downcase == params[:other][:user_answer].downcase
-      @card.touch
-      flash.now[:success] = I18n.t 'trainer.success'
-    else
-      flash.now[:error] = I18n.t 'trainer.error'
+    @result = CheckCardAnswer.new(user_answer: params[:other][:user_answer],
+                                  card: @card,
+                                  quality: params[:other][:quality])
+    flash.now[:success] = t('.success') if @result.success?
+    flash.now[:info] = flash_info if @result.info?
+    if @result.error?
+      flash.now[:error] = t '.error'
+      flash.now[:info] = I18n.t 'cards.trainer.count', deep_interpolation: true, mistakes: @card.mistake_counter
     end
   end
 
   private
+
+  def flash_info
+    I18n.t'cards.trainer.info', deep_interpolation: true, translated_text: @card.translated_text, user_answer: params[:other][:user_answer]
+  end
 
   def set_card
     @card = @deck.cards.find(params[:id])
@@ -65,6 +68,6 @@ class CardsController < ApplicationController
   end
 
   def card_params
-    params.require(:card).permit(:original_text, :translated_text, :updated_at, :image)
+    params.require(:card).permit(:original_text, :translated_text, :mistake_counter, :image)
   end
 end

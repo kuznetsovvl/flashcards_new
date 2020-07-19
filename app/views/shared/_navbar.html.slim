@@ -1,0 +1,22 @@
+nav.navbar.navbar-expand.navbar-dark.bg-dark
+  span.brand-name= link_to t('navbar.brand_name'), root_path, class: 'brand-name'
+  button.navbar-toggler aria-controls="navbarsExample02" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarsExample02" data-toggle="collapse", type: "button" 
+    span.navbar-toggler-icon
+  #navbarsExample02.collapse.navbar-collapse
+    ul.navbar-nav.mr-auto
+      - if current_user
+        li.nav-item
+          = button_to t('navbar.settings'), edit_user_path(current_user), class: 'btn btn-dark', method: :get
+        li.nav-item
+          = button_to t('navbar.logout'), logout_path, class: 'btn btn-dark', method: :delete
+      - else
+        li.nav-item
+          = button_to t('navbar.signup'), signup_path, class: 'btn btn-dark', method: :post
+        li.nav-item
+          = button_to t('navbar.signin'), login_path, class: 'btn btn-dark', method: :post
+        li.nav-item
+          = link_to t('navbar.login_github'), auth_at_provider_path(:provider => :github), class: 'nav-link'
+    li.nav-item.d-flex
+      = link_to t('navbar.languages.ru'), root_path(locale: :ru), class: 'nav-link'
+      | |
+      = link_to t('navbar.languages.en'), root_path(locale: :en), class: 'nav-link'

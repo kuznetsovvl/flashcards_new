@@ -11,42 +11,50 @@ RSpec.describe SessionsController, type: :controller do
   end
 
   describe 'POST #create' do
+    let!(:user) { create(:user) }
+
     context 'with valid attributes' do
-      let!(:user) { create(:user) }
-      let(:password) { '12345' }
+      before do
+        post :create, params: { login: { email: user.email, password: '12345' } }
+      end
+
       it 'successfully create a session' do
-        post :create, params: { email: user.email, password: password }
-        expect(response.status).to eq(302)
+        expect(logged_in?).to eq true
       end
 
       it 'redirect the session to the root_url' do
-        post :create, params: { email: user.email, password: password }
         expect(response).to redirect_to root_path
       end
     end
+
     context 'with invalid attributes' do
-      let!(:user) { create(:user) }
-      let(:password) { 'wrongpassword' }
+      before do
+        post :create, params: { login: { email: user.email, password: 'wrongpassword' } }
+      end
+
       it 'fail create a session' do
-        post :create, params: { email: user.email, password: password }
-        expect(response.status).to eq(200)
+        expect(logged_in?).to eq false
       end
 
       it 'redirect the session to the new' do
-        post :create, params: { email: user.email, password: password }
         expect(response).to render_template :new
       end
     end
   end
 
   describe 'DELETE #destroy' do
-    let(:attrs) { attributes_for :user }
+    let!(:user) { create(:user) }
+    before do
+      login_user(user)
+      delete :destroy
+    end
+
     it 'successfully delete a session' do
-      expect do
-        login_user(user)
-        delete :destroy
-        response.to redirect_to root_url
-      end
+      expect(logged_in?).to eq false
+    end
+
+    it 'redirect the session to the root_url' do
+      expect(response).to redirect_to root_path
     end
   end
 end

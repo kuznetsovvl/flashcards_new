@@ -1,37 +1,40 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
+  before_action :set_user, except: %i[new create]
+
   def new
     @user = User.new
   end
 
-  def edit
-    @user = User.find(params[:id])
-  end
+  def edit; end
 
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to root_path, notice: t('reg_users.sign_up')
+      redirect_to root_path, notice: t('.success')
     else
       render :new
     end
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update(user_params)
-      flash[:success] = I18n.t 'reg_users.success.update'
-      redirect_to root_path
+      redirect_to root_path, success: t('.success')
     else
-      flash.now[:error] = I18n.t 'reg_users.error.update'
-      render 'edit'
+      render 'edit', error: t('.error')
     end
   end
 
+  def edit_password; end
+
   private
 
+  def set_user
+    @user = User.find(params[:id])
+  end
+
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation)
+    params.require(:user).permit(:email, :password, :password_confirmation, :locale)
   end
 end

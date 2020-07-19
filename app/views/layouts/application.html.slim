@@ -1,0 +1,13 @@
+doctype html
+html
+  head
+    title Flashcards
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'                       
+  body
+    section.container
+      = render "shared/navbar"
+      = render "shared/navigation"
+      = render "shared/flash_notices"
+      = yield
+      = render 'shared/footer'
